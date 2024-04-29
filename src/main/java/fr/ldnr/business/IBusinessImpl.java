@@ -64,6 +64,9 @@ public class IBusinessImpl implements IBusiness {
     @Override
     public List<Movie> findMovieByKeyword(String kw) { return movieRepository.findByNameContains(kw); }
 
+    @Override
+    public List<Movie> findMovieByMovieTheater(Long idMovieTheater) { return movieRepository.findByMovieTheaterId(idMovieTheater); }
+
 
     //SESSION
     @Override

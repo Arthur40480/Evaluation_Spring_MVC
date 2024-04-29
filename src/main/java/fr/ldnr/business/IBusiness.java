@@ -28,6 +28,7 @@ public interface IBusiness {
     public void createMovie(Movie movie);
     public List<Movie> findAllMovie();
     public List<Movie> findMovieByKeyword(String kw);
+    public List<Movie> findMovieByMovieTheater(Long idMovieTheater);
 
     //SESSION
     public void createSession(Session session);
