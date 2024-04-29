@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th        = "http://thymeleaf.org"
+      xmlns:layout    = "http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate = "layout"
+      lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Les Séances</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="text-danger" th:if="${error}" th:text="${error}">	</div>
+
+        <div class = "container col-md-6 marge">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Séance</div>
+
+                <div class="panel-body">
+                    <form th:action="@{/session}" method="get">
+                        <label>Keyword</label>
+                        <input type="text" name="keyword" th:value="${keyword}">
+                        <button type="submit" class="btn btn-primary"> Search </button>
+                    </form>
+                </div>
+                <table class = "table">
+                    <tr>
+                        <th>Date</th> <th>Film</th> <th>Cinéma</th>
+                    </tr>
+                    <tr th:each="s:${sessionList}">
+                        <td th:text="${#dates.format(s.date, 'dd/MM HH:mm')}"> </td>
+                        <td th:text="${s.movie.name}"> </td>
+                        <td th:text="${s.movie.movieTheater.name}"> </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

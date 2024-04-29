@@ -1,9 +1,6 @@
 package fr.ldnr.web;
 
 import fr.ldnr.business.IBusinessImpl;
-import fr.ldnr.dao.CityRepository;
-import fr.ldnr.dao.MovieRepository;
-import fr.ldnr.dao.MovieTheaterRepository;
 import fr.ldnr.entities.City;
 import fr.ldnr.entities.MovieTheater;
 import org.springframework.beans.factory.annotation.Autowired;
