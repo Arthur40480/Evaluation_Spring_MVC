@@ -35,6 +35,12 @@
                         <td th:text="${s.movie.movieTheater.name}"> </td>
                     </tr>
                 </table>
+
+                <ul class = "nav nav-pills">
+                    <li th:class="${currentPage==status.index}?'active':''"  th:each="page,status:${pages}">
+                        <a th:href="@{/session(page=${status.index}, idCity=${idMovie}, date=${#dates.format(date, 'yyyy-MM-dd')})}" th:text="${status.index}"></a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

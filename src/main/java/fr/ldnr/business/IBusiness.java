@@ -30,12 +30,12 @@ public interface IBusiness {
     public void createMovie(Movie movie);
     public List<Movie> findAllMovie();
     public Optional<Movie> findMovieById(Long idMovie);
-    public List<Movie> findMovieByKeyword(String kw);
-    public List<Movie> findMovieByMovieTheater(Long idMovieTheater);
+    public Page<Movie> findMovieByKeyword(String kw, int page);
+    public Page<Movie> findMovieByMovieTheater(Long idMovieTheater, int page);
 
     //SESSION
     public void createSession(Session session);
-    public List<Session> findAllSession();
-    public List<Session> findSessionByMovie(Long idMovie);
-    public List<Session> findSessionByDate(Date date);
+    public Page<Session> findAllSession(int page);
+    public Page<Session> findSessionByMovie(Long idMovie, int page);
+    public Page<Session> findSessionByDate(Date date, int page);
 }

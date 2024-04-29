@@ -68,10 +68,10 @@ public class IBusinessImpl implements IBusiness {
     public List<Movie> findAllMovie() { return movieRepository.findAll(); }
 
     @Override
-    public List<Movie> findMovieByKeyword(String kw) { return movieRepository.findByNameContains(kw); }
+    public Page<Movie> findMovieByKeyword(String kw, int page) { return movieRepository.findByNameContains(kw, PageRequest.of(page, 2)); }
 
     @Override
-    public List<Movie> findMovieByMovieTheater(Long idMovieTheater) { return movieRepository.findByMovieTheaterId(idMovieTheater); }
+    public Page<Movie> findMovieByMovieTheater(Long idMovieTheater, int page) { return movieRepository.findByMovieTheaterId(idMovieTheater, PageRequest.of(page, 2)); }
 
 
     //SESSION
@@ -79,11 +79,11 @@ public class IBusinessImpl implements IBusiness {
     public void createSession(Session session) { sessionRepository.save(session); }
 
     @Override
-    public List<Session> findAllSession() { return sessionRepository.findAll(); }
+    public Page<Session> findAllSession(int page) { return sessionRepository.findAll(PageRequest.of(page, 2)); }
 
     @Override
-    public List<Session> findSessionByMovie(Long idMovie) { return sessionRepository.findByMovieId(idMovie); }
+    public Page<Session> findSessionByMovie(Long idMovie, int page) { return sessionRepository.findByMovieId(idMovie, PageRequest.of(page, 2)); }
 
     @Override
-    public List<Session> findSessionByDate(Date date) { return sessionRepository.findByDate(date); }
+    public Page<Session> findSessionByDate(Date date, int page) { return sessionRepository.findByDate(date, PageRequest.of(page, 2)); }
 }
