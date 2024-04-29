@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -15,17 +16,27 @@ import java.util.Collection;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = "movieTheaters")
-public class City implements Serializable {
+@ToString
+public class Movie implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
-    @Size(min=1,max=20)
+    @Size(min=1,max=50)
     private String name;
 
-    @OneToMany(mappedBy = "city")
-    private Collection<MovieTheater> movieTheaters;
+    @NotNull
+    @Size(min=1,max=50)
+    private String genre;
+
+    @DecimalMin("50")
+    private String duration;
+
+    @ManyToOne
+    private MovieTheater movieTheater;
+
+    @OneToMany(mappedBy = "movie")
+    private Collection<Session> session;
 }
