@@ -36,6 +36,7 @@ public class IBusinessImpl implements IBusiness {
     @Override
     public List<City> findAllCity() { return cityRepository.findAll(); }
 
+
     //MOVIE_THEATER
     @Override
     public void createMovieTheater(MovieTheater movieTheater) { movieTheaterRepository.save(movieTheater); }
@@ -52,11 +53,19 @@ public class IBusinessImpl implements IBusiness {
     @Override
     public List<MovieTheater> findMovieTheaterByKeyword(String kw) { return movieTheaterRepository.findByNameContains(kw); }
 
+
     //MOVIE
     @Override
     public void createMovie(Movie movie) { movieRepository.save(movie); }
 
+    @Override
+    public List<Movie> findAllMovie() { return movieRepository.findAll(); }
+
+
     //SESSION
     @Override
     public void createSession(Session session) { sessionRepository.save(session); }
+
+    @Override
+    public List<Session> findAllSession() { return sessionRepository.findAll(); }
 }

@@ -25,7 +25,9 @@ public interface IBusiness {
 
     //MOVIE
     public void createMovie(Movie movie);
+    public List<Movie> findAllMovie();
 
     //SESSION
     public void createSession(Session session);
+    public List<Session> findAllSession();
 }

@@ -22,7 +22,6 @@ public class CityController {
 
     @GetMapping("/city")
     public String city(Long idCity, Model model) {
-        System.out.println("ALOOOOOOO");
         Long cityId = (long) 0;
         try{
             Optional<City> optionalCity = iBusinessImpl.findCityById(idCity);
