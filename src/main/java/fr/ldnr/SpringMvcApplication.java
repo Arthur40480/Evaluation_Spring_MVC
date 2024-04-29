@@ -49,9 +49,27 @@ public class SpringMvcApplication implements CommandLineRunner {
 		cityRepository.save(marseille);
 		cityRepository.save(bordeaux);
 
+		MovieTheater paradisio = new MovieTheater("Le Paradisio", "13 place des pigeon", paris, movieList);
+		MovieTheater cinepolis = new MovieTheater("Cinépolis", "22 avenue des rosiers", marseille, movieList);
+		MovieTheater cinestar = new MovieTheater("Cinéstar", "9 rue des artisans", bordeaux, movieList);
+		MovieTheater cinecity = new MovieTheater("CinéCity", "45 rue des éléphants", paris, movieList);
+		MovieTheater cinemaMajestic = new MovieTheater("Le Majestic", "place des magiciens", marseille, movieList);
+		MovieTheater cineplex = new MovieTheater("Cinéplex", "5 rue des mimosas", bordeaux, movieList);
+		MovieTheater apollo = new MovieTheater("L'Apollo", "24 routes des cerisiers", paris, movieList);
+		MovieTheater vogue = new MovieTheater("Le CinéVogue", "2 impasse des voitures", marseille, movieList);
+		MovieTheater etoile = new MovieTheater("L'Etoilé'", "5 rue des nains", bordeaux, movieList);
 		MovieTheater cgr = new MovieTheater("CGR de Paris", "10 rue des tulipes", paris, movieList);
 		MovieTheater leGrandRex = new MovieTheater("Le Grand Rex", "20 impasse des acteurs", marseille, movieList);
 		MovieTheater leBrady = new MovieTheater("Le Brady", "5 rue des mimosas", bordeaux, movieList);
+		movieTheaterRepository.save(paradisio);
+		movieTheaterRepository.save(cinepolis);
+		movieTheaterRepository.save(cinestar);
+		movieTheaterRepository.save(cinecity);
+		movieTheaterRepository.save(cinemaMajestic);
+		movieTheaterRepository.save(cineplex);
+		movieTheaterRepository.save(apollo);
+		movieTheaterRepository.save(vogue);
+		movieTheaterRepository.save(etoile);
 		movieTheaterRepository.save(cgr);
 		movieTheaterRepository.save(leGrandRex);
 		movieTheaterRepository.save(leBrady);

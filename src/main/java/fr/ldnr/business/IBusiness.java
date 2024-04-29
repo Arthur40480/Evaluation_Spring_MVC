@@ -4,6 +4,7 @@ import fr.ldnr.entities.City;
 import fr.ldnr.entities.Movie;
 import fr.ldnr.entities.MovieTheater;
 import fr.ldnr.entities.Session;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -22,8 +23,8 @@ public interface IBusiness {
     public void createMovieTheater(MovieTheater movieTheater);
     public Optional<MovieTheater>  findMovieTheaterById(Long idMovieTheater);
     public List<MovieTheater> findAllMovieTheater();
-    public List<MovieTheater> findMovieTheaterByCity(Long idCity);
-    public List<MovieTheater> findMovieTheaterByKeyword(String kw);
+    public Page<MovieTheater> findMovieTheaterByCity(Long idCity, int page);
+    public Page<MovieTheater> findMovieTheaterByKeyword(String kw, int page);
 
     //MOVIE
     public void createMovie(Movie movie);

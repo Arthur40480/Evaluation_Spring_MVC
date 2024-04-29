@@ -9,6 +9,8 @@ import fr.ldnr.entities.Movie;
 import fr.ldnr.entities.MovieTheater;
 import fr.ldnr.entities.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -49,10 +51,10 @@ public class IBusinessImpl implements IBusiness {
     public List<MovieTheater> findAllMovieTheater() { return movieTheaterRepository.findAll(); }
 
     @Override
-    public List<MovieTheater> findMovieTheaterByCity(Long idCity) { return movieTheaterRepository.findByCityId(idCity); }
+    public Page<MovieTheater> findMovieTheaterByCity(Long idCity, int page) { return movieTheaterRepository.findByCityId(idCity, PageRequest.of(page, 2)); }
 
     @Override
-    public List<MovieTheater> findMovieTheaterByKeyword(String kw) { return movieTheaterRepository.findByNameContains(kw); }
+    public Page<MovieTheater> findMovieTheaterByKeyword(String kw, int page) { return movieTheaterRepository.findByNameContains(kw, PageRequest.of(page, 2)); }
 
 
     //MOVIE
