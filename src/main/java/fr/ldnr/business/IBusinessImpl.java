@@ -11,6 +11,7 @@ import fr.ldnr.entities.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,6 +60,9 @@ public class IBusinessImpl implements IBusiness {
     public void createMovie(Movie movie) { movieRepository.save(movie); }
 
     @Override
+    public Optional<Movie> findMovieById(Long idMovie) { return movieRepository.findById(idMovie); }
+
+    @Override
     public List<Movie> findAllMovie() { return movieRepository.findAll(); }
 
     @Override
@@ -74,4 +78,10 @@ public class IBusinessImpl implements IBusiness {
 
     @Override
     public List<Session> findAllSession() { return sessionRepository.findAll(); }
+
+    @Override
+    public List<Session> findSessionByMovie(Long idMovie) { return sessionRepository.findByMovieId(idMovie); }
+
+    @Override
+    public List<Session> findSessionByDate(Date date) { return sessionRepository.findByDate(date); }
 }

@@ -13,6 +13,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
@@ -75,15 +76,15 @@ public class SpringMvcApplication implements CommandLineRunner {
 		movieRepository.save(titanic);
 		movieRepository.save(lesEvades);
 
-		Session mondaySession1 = new Session(new Date(2024, 5, 21, 11, 0), lor);
-		Session mondaySession2 = new Session(new Date(2024, 5, 21, 15, 0), interstellar);
-		Session mondaySession3 = new Session(new Date(2024, 5, 21, 17, 0), inception);
-		Session tuesdaySession1 = new Session(new Date(2024, 5, 22, 10, 0), lesEvades);
-		Session tuesdaySession2 = new Session(new Date(2024, 5, 22, 14, 0), laLaLand);
-		Session tuesdaySession3 = new Session(new Date(2024, 5, 22, 19, 0), leParrain);
-		Session wednesdaySession1 = new Session(new Date(2024, 5, 23, 11, 0), forestGump);
-		Session wednesdaySession2 = new Session(new Date(2024, 5, 23, 15, 0), pulpFiction);
-		Session wednesdaySession3 = new Session(new Date(2024, 5, 23, 17, 0), titanic);
+		Session mondaySession1 = new Session(new Date(124, 5, 21), Time.valueOf("11:00:00"), lor);
+		Session mondaySession2 = new Session(new Date(124, 5, 21), Time.valueOf("15:00:00"), interstellar);
+		Session mondaySession3 = new Session(new Date(124, 5, 21), Time.valueOf("21:30:00"), inception);
+		Session tuesdaySession1 = new Session(new Date(124, 5, 22), Time.valueOf("23:00:00"), lesEvades);
+		Session tuesdaySession2 = new Session(new Date(124, 5, 22), Time.valueOf("09:15:00"), laLaLand);
+		Session tuesdaySession3 = new Session(new Date(124, 5, 22), Time.valueOf("12:00:00"), leParrain);
+		Session wednesdaySession1 = new Session(new Date(124, 5, 23), Time.valueOf("16:00:00"), forestGump);
+		Session wednesdaySession2 = new Session(new Date(124, 5, 23), Time.valueOf("12:30:00"), pulpFiction);
+		Session wednesdaySession3 = new Session(new Date(124, 5, 23), Time.valueOf("10:45:00"), titanic);
 		sessionRepository.save(mondaySession1);
 		sessionRepository.save(mondaySession2);
 		sessionRepository.save(mondaySession3);

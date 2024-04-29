@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.Date;
 
 @Entity
@@ -24,11 +25,15 @@ public class Session implements Serializable {
     @NotNull
     private Date date;
 
+    @NotNull
+    private Time time;
+
     @ManyToOne
     private Movie movie;
 
-    public Session(Date date, Movie movie) {
+    public Session(Date date, Time time, Movie movie) {
         this.date = date;
+        this.time = time;
         this.movie = movie;
     }
 }

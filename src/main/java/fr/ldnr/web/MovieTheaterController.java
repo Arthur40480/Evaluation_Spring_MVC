@@ -31,7 +31,7 @@ public class MovieTheaterController {
             if (!optionalCity.isPresent()) {
                 model.addAttribute("error", "ID CITY INVALID");
                 movieTheaterList = iBusinessImpl.findMovieTheaterByKeyword(kw);
-            } else {
+            }else {
                 movieTheaterList = iBusinessImpl.findMovieTheaterByCity(idCity);
             }
         }else {

@@ -28,7 +28,7 @@
                     <form th:action="@{/index}" method="get">
                         <label>Keyword</label>
                         <input type="text" name="keyword" th:value="${keyword}">
-                        <button type="submit" class="btn btn-primary"> Search </button>
+                        <button type="submit" class="btn btn-primary">Rechercher <i class="fas fa-search"></i></button>
                     </form>
                 </div>
 
@@ -41,8 +41,8 @@
                             <td th:text="${m.name}"> </td>
                             <td th:text="${m.address}"> </td>
                             <td th:text="${m.city.name}"> </td>
-                            <td> <a class="btn btn-secondary" th:href="@{ /movie (idMovieTheater=${m.id}) }">
-                                Films <i class="fas fa-video"></i> </a>
+                            <td>
+                                <a class="btn btn-secondary" th:href="@{ /movie (idMovieTheater=${m.id}) }">Films <i class="fas fa-video"></i> </a>
                             </td>
                         </tr>
                     </table>

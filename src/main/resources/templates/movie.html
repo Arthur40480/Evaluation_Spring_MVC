@@ -20,7 +20,7 @@
                     <form th:action="@{/movie}" method="get">
                         <label>Keyword</label>
                         <input type="text" name="keyword" th:value="${keyword}">
-                        <button type="submit" class="btn btn-primary"> Search </button>
+                        <button type="submit" class="btn btn-primary">Rechercher <i class="fas fa-search"></i></button>
                     </form>
                 </div>
                     <table class = "table">
@@ -32,6 +32,9 @@
                             <td th:text="${m.genre}"> </td>
                             <td th:text="${m.duration}"></td>
                             <td th:text="${m.movieTheater.name}"> </td>
+                            <td> <a class="btn btn-secondary" th:href="@{ /session (idMovie=${m.id}) }">
+                                Séances <i class="fas fa-film"></i> </a>
+                            </td>
                         </tr>
                     </table>
                 </div>

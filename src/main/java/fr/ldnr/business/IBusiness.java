@@ -6,6 +6,7 @@ import fr.ldnr.entities.MovieTheater;
 import fr.ldnr.entities.Session;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,10 +28,13 @@ public interface IBusiness {
     //MOVIE
     public void createMovie(Movie movie);
     public List<Movie> findAllMovie();
+    public Optional<Movie> findMovieById(Long idMovie);
     public List<Movie> findMovieByKeyword(String kw);
     public List<Movie> findMovieByMovieTheater(Long idMovieTheater);
 
     //SESSION
     public void createSession(Session session);
     public List<Session> findAllSession();
+    public List<Session> findSessionByMovie(Long idMovie);
+    public List<Session> findSessionByDate(Date date);
 }

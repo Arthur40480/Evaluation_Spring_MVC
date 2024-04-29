@@ -18,17 +18,19 @@
 
                 <div class="panel-body">
                     <form th:action="@{/session}" method="get">
-                        <label>Keyword</label>
-                        <input type="text" name="keyword" th:value="${keyword}">
-                        <button type="submit" class="btn btn-primary"> Search </button>
+                        <label>Date</label>
+                        <input type="date" name="date" th:value="${date}">
+                        <button type="submit" class="btn btn-primary">Rechercher <i class="fas fa-search"></i></button>
                     </form>
                 </div>
+
                 <table class = "table">
                     <tr>
-                        <th>Date</th> <th>Film</th> <th>Cinéma</th>
+                        <th>Date</th> <th>Heure</th> <th>Film</th> <th>Cinéma</th>
                     </tr>
                     <tr th:each="s:${sessionList}">
-                        <td th:text="${#dates.format(s.date, 'dd/MM HH:mm')}"> </td>
+                        <td th:text="${#dates.format(s.date, 'dd/MM')}"> </td>
+                        <td th:text="${#dates.format(s.time, 'HH:mm')}"></td>
                         <td th:text="${s.movie.name}"> </td>
                         <td th:text="${s.movie.movieTheater.name}"> </td>
                     </tr>
