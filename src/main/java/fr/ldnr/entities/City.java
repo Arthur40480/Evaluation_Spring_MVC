@@ -28,4 +28,9 @@ public class City implements Serializable {
 
     @OneToMany(mappedBy = "city")
     private Collection<MovieTheater> movieTheaters;
+
+    public City(String name, Collection<MovieTheater> movieTheaters) {
+        this.name = name;
+        this.movieTheaters = movieTheaters;
+    }
 }

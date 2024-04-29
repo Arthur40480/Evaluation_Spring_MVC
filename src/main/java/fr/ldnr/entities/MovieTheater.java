@@ -35,4 +35,10 @@ public class MovieTheater implements Serializable {
 
     @OneToMany(mappedBy = "movieTheater")
     private Collection<Movie> movie;
+
+    public MovieTheater(String name, String address, Collection<Movie> movie) {
+        this.name = name;
+        this.address = address;
+        this.movie = movie;
+    }
 }

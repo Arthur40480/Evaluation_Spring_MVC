@@ -39,4 +39,12 @@ public class Movie implements Serializable {
 
     @OneToMany(mappedBy = "movie")
     private Collection<Session> session;
+
+    public Movie(String name, String genre, String duration, MovieTheater movieTheater, Collection<Session> session) {
+        this.name = name;
+        this.genre = genre;
+        this.duration = duration;
+        this.movieTheater = movieTheater;
+        this.session = session;
+    }
 }
