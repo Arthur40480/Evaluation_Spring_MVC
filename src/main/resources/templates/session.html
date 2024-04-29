@@ -24,23 +24,29 @@
                     </form>
                 </div>
 
-                <table class = "table">
-                    <tr>
-                        <th>Date</th> <th>Heure</th> <th>Film</th> <th>Cinéma</th>
-                    </tr>
-                    <tr th:each="s:${sessionList}">
-                        <td th:text="${#dates.format(s.date, 'dd/MM')}"> </td>
-                        <td th:text="${#dates.format(s.time, 'HH:mm')}"></td>
-                        <td th:text="${s.movie.name}"> </td>
-                        <td th:text="${s.movie.movieTheater.name}"> </td>
-                    </tr>
-                </table>
+                <div class="col-md-6" style="margin-bottom: 10px;">
+                    <a class="btn btn-success">Ajouter une séance <i class="fas fa-clock"></i></a>
+                </div>
 
-                <ul class = "nav nav-pills">
-                    <li th:class="${currentPage==status.index}?'active':''"  th:each="page,status:${pages}">
-                        <a th:href="@{/session(page=${status.index}, idCity=${idMovie}, date=${#dates.format(date, 'yyyy-MM-dd')})}" th:text="${status.index}"></a>
-                    </li>
-                </ul>
+                <div class="panel-body">
+                    <table class = "table">
+                        <tr>
+                            <th>Date</th> <th>Heure</th> <th>Film</th> <th>Cinéma</th>
+                        </tr>
+                        <tr th:each="s:${sessionList}">
+                            <td th:text="${#dates.format(s.date, 'dd/MM')}"> </td>
+                            <td th:text="${#dates.format(s.time, 'HH:mm')}"></td>
+                            <td th:text="${s.movie.name}"> </td>
+                            <td th:text="${s.movie.movieTheater.name}"> </td>
+                        </tr>
+                    </table>
+
+                    <ul class = "nav nav-pills">
+                        <li th:class="${currentPage==status.index}?'active':''"  th:each="page,status:${pages}">
+                            <a th:href="@{/session(page=${status.index}, idCity=${idMovie}, date=${#dates.format(date, 'yyyy-MM-dd')})}" th:text="${status.index}"></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

@@ -24,12 +24,16 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">Cinéma</div>
 
-            <div class="panel-body">
+                <div class="panel-body">
                     <form th:action="@{/index}" method="get">
                         <label>Keyword</label>
                         <input type="text" name="keyword" th:value="${keyword}">
                         <button type="submit" class="btn btn-primary">Rechercher <i class="fas fa-search"></i></button>
                     </form>
+                </div>
+
+                <div class="col-md-6" style="margin-bottom: 10px;">
+                    <a class="btn btn-success" th:href="@{/movieTheater}">Ajouter un cinéma <i class="fas fa-home"></i></a>
                 </div>
 
                 <div class="panel-body">
