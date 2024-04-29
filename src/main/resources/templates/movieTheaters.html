@@ -12,13 +12,13 @@
 <div layout:fragment="content">
     <div class="text-danger" th:if="${error}" th:text="${error}">	</div>
 
-<!--    <div class="container-fluid">
+    <div class="container-fluid">
         <ul class="nav nav-pills">
-            <li th:each="hero, status : ${heroList}" th:class="${idHero == hero.id} ? 'active' : ''">
-                <a th:text="${hero.name}" th:href="@{/category(idHero=${hero.id})}"></a>
+            <li th:each="city, status : ${cityList}" th:class="${idCity == city.id} ? 'active' : ''">
+                <a th:text="${city.name}"></a>
             </li>
         </ul>
-    </div>-->
+    </div>
 
     <div class = "container col-md-6 marge">
         <div class="panel panel-primary">

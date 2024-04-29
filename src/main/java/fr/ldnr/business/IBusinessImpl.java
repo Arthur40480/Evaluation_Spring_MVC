@@ -11,6 +11,8 @@ import fr.ldnr.entities.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class IBusinessImpl implements IBusiness {
 
@@ -27,9 +29,18 @@ public class IBusinessImpl implements IBusiness {
     @Override
     public void createCity(City city) { cityRepository.save(city); }
 
+    @Override
+    public List<City> findAllCity() { return cityRepository.findAll(); }
+
     //MOVIE_THEATER
     @Override
     public void createMovieTheater(MovieTheater movieTheater) { movieTheaterRepository.save(movieTheater); }
+
+    @Override
+    public List<MovieTheater> findAllMovieTheater() { return movieTheaterRepository.findAll(); }
+
+    @Override
+    public List<MovieTheater> findMovieTheaterByCity(Long idCity) { return movieTheaterRepository.findByCityId(idCity); }
 
     //MOVIE
     @Override
