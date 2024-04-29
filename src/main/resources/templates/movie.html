@@ -17,14 +17,20 @@
                 <div class="panel-heading">Film</div>
 
                 <div class="panel-body">
+                    <form th:action="@{/movie}" method="get">
+                        <label>Keyword</label>
+                        <input type="text" name="keyword" th:value="${keyword}">
+                        <button type="submit" class="btn btn-primary"> Search </button>
+                    </form>
+                </div>
                     <table class = "table">
                         <tr>
-                            <th>Titre</th> <th>Genre</th>  <th>Durée</th> <th>Cinéma</th>
+                            <th>Titre</th> <th>Genre</th>  <th>Durée (min)</th> <th>Cinéma</th>
                         </tr>
                         <tr th:each="m:${movieList}">
                             <td th:text="${m.name}"> </td>
                             <td th:text="${m.genre}"> </td>
-                            <td th:text="${m.duration}"> </td>
+                            <td th:text="${m.duration}"></td>
                             <td th:text="${m.movieTheater.name}"> </td>
                         </tr>
                     </table>

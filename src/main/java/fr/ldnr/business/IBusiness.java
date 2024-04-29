@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @Service
 public interface IBusiness {
+
     //CITY
     public void createCity(City city);
     public Optional<City> findCityById(Long idCity);
@@ -26,6 +27,7 @@ public interface IBusiness {
     //MOVIE
     public void createMovie(Movie movie);
     public List<Movie> findAllMovie();
+    public List<Movie> findMovieByKeyword(String kw);
 
     //SESSION
     public void createSession(Session session);
