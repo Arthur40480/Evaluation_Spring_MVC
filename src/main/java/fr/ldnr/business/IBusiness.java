@@ -21,6 +21,7 @@ public interface IBusiness {
     public Optional<MovieTheater>  findMovieTheaterById(Long idMovieTheater);
     public List<MovieTheater> findAllMovieTheater();
     public List<MovieTheater> findMovieTheaterByCity(Long idCity);
+    public List<MovieTheater> findMovieTheaterByKeyword(String kw);
 
     //MOVIE
     public void createMovie(Movie movie);

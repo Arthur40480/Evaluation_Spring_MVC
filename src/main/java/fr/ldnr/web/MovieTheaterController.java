@@ -24,6 +24,7 @@ public class MovieTheaterController {
 
     @GetMapping("/index")
     public String index(Model model, @RequestParam(name = "idCity", defaultValue = "0") Long idCity,
+                                     @RequestParam(name = "keyword", defaultValue = "") String kw,
                                      @ModelAttribute(name="error") String error) {
         List<City> cityList = iBusinessImpl.findAllCity();
         List<MovieTheater> movieTheaterList = null;
@@ -32,12 +33,12 @@ public class MovieTheaterController {
             Optional<City> optionalCity = iBusinessImpl.findCityById(idCity);
             if (!optionalCity.isPresent()) {
                 model.addAttribute("error", "ID CITY INVALID");
-                movieTheaterList = iBusinessImpl.findAllMovieTheater();
+                movieTheaterList = iBusinessImpl.findMovieTheaterByKeyword(kw);
             } else {
                 movieTheaterList = iBusinessImpl.findMovieTheaterByCity(idCity);
             }
         }else {
-            movieTheaterList = iBusinessImpl.findAllMovieTheater();
+            movieTheaterList = iBusinessImpl.findMovieTheaterByKeyword(kw);
         }
 
         model.addAttribute("error", model.getAttribute("error"));
