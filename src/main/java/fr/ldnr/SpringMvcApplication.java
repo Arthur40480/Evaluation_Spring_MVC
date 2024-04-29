@@ -1,9 +1,14 @@
 package fr.ldnr;
 
+import fr.ldnr.dao.CityRepository;
+import fr.ldnr.dao.MovieRepository;
+import fr.ldnr.dao.MovieTheaterRepository;
+import fr.ldnr.dao.SessionRepository;
 import fr.ldnr.entities.City;
 import fr.ldnr.entities.Movie;
 import fr.ldnr.entities.MovieTheater;
 import fr.ldnr.entities.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,12 +20,21 @@ import java.util.List;
 @SpringBootApplication
 public class SpringMvcApplication implements CommandLineRunner {
 
+	@Autowired
+	CityRepository cityRepository;
+	@Autowired
+	MovieTheaterRepository movieTheaterRepository;
+	@Autowired
+	MovieRepository movieRepository;
+	@Autowired
+	SessionRepository sessionRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringMvcApplication.class, args);
 	}
 
 	public void run(String... args) throws Exception {
-
+		generateDatas();
 	}
 
 	private void generateDatas() {
@@ -31,10 +45,16 @@ public class SpringMvcApplication implements CommandLineRunner {
 		City paris = new City("Paris",movieTheaterList);
 		City marseille = new City("Marseille",movieTheaterList);
 		City bordeaux = new City("Bordeaux",movieTheaterList);
+		cityRepository.save(paris);
+		cityRepository.save(marseille);
+		cityRepository.save(bordeaux);
 
-		MovieTheater cgr = new MovieTheater("CGR de Paris", "10 rue des tulipes", movieList);
-		MovieTheater leGrandRex = new MovieTheater("Le Grand Rex", "20 impasse des acteurs", movieList);
-		MovieTheater leBrady = new MovieTheater("Le Brady", "5 rue des mimosas", movieList);
+		MovieTheater cgr = new MovieTheater("CGR de Paris", "10 rue des tulipes", paris, movieList);
+		MovieTheater leGrandRex = new MovieTheater("Le Grand Rex", "20 impasse des acteurs", marseille, movieList);
+		MovieTheater leBrady = new MovieTheater("Le Brady", "5 rue des mimosas", bordeaux, movieList);
+		movieTheaterRepository.save(cgr);
+		movieTheaterRepository.save(leGrandRex);
+		movieTheaterRepository.save(leBrady);
 
 		Movie lor = new Movie("Seigneur des anneaux", "Fantastique", "300", cgr, sessionList);
 		Movie inception = new Movie("Inception", "Science-fiction, Thriller", "210", cgr, sessionList);
@@ -45,15 +65,33 @@ public class SpringMvcApplication implements CommandLineRunner {
 		Movie pulpFiction = new Movie("Pulp Fiction", "Drame, Crime", "160", leGrandRex, sessionList);
 		Movie titanic = new Movie("Titanic", "Drame, Romance", "135", leBrady, sessionList);
 		Movie lesEvades = new Movie("Les Evadés", "Drame, Crime", "300", leBrady, sessionList);
+		movieRepository.save(lor);
+		movieRepository.save(inception);
+		movieRepository.save(laLaLand);
+		movieRepository.save(leParrain);
+		movieRepository.save(interstellar);
+		movieRepository.save(forestGump);
+		movieRepository.save(pulpFiction);
+		movieRepository.save(titanic);
+		movieRepository.save(lesEvades);
 
-		Session mondaySession1 = new Session(new Date(2024, 5, 21), 11, lor);
-		Session mondaySession2 = new Session(new Date(2024, 5, 21), 15, interstellar);
-		Session mondaySession3 = new Session(new Date(2024, 5, 21), 17, inception);
-		Session tuesdaySession1 = new Session(new Date(2024, 5, 22), 10, lesEvades);
-		Session tuesdaySession2 = new Session(new Date(2024, 5, 22), 14, laLaLand);
-		Session tuesdaySession3 = new Session(new Date(2024, 5, 22), 19, leParrain);
-		Session wednesdaySession1 = new Session(new Date(2024, 5, 23), 11, forestGump);
-		Session wednesdaySession2 = new Session(new Date(2024, 5, 23), 15, pulpFiction);
-		Session wednesdaySession3 = new Session(new Date(2024, 5, 23), 17, titanic);
+		Session mondaySession1 = new Session(new Date(2024, 5, 21, 11, 0), lor);
+		Session mondaySession2 = new Session(new Date(2024, 5, 21, 15, 0), interstellar);
+		Session mondaySession3 = new Session(new Date(2024, 5, 21, 17, 0), inception);
+		Session tuesdaySession1 = new Session(new Date(2024, 5, 22, 10, 0), lesEvades);
+		Session tuesdaySession2 = new Session(new Date(2024, 5, 22, 14, 0), laLaLand);
+		Session tuesdaySession3 = new Session(new Date(2024, 5, 22, 19, 0), leParrain);
+		Session wednesdaySession1 = new Session(new Date(2024, 5, 23, 11, 0), forestGump);
+		Session wednesdaySession2 = new Session(new Date(2024, 5, 23, 15, 0), pulpFiction);
+		Session wednesdaySession3 = new Session(new Date(2024, 5, 23, 17, 0), titanic);
+		sessionRepository.save(mondaySession1);
+		sessionRepository.save(mondaySession2);
+		sessionRepository.save(mondaySession3);
+		sessionRepository.save(tuesdaySession1);
+		sessionRepository.save(tuesdaySession2);
+		sessionRepository.save(tuesdaySession3);
+		sessionRepository.save(wednesdaySession1);
+		sessionRepository.save(wednesdaySession2);
+		sessionRepository.save(wednesdaySession3);
 	}
 }

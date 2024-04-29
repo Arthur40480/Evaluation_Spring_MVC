@@ -24,15 +24,11 @@ public class Session implements Serializable {
     @NotNull
     private Date date;
 
-    @NotNull
-    private int time;
-
     @ManyToOne
     private Movie movie;
 
-    public Session(Date date, int time, Movie movie) {
+    public Session(Date date, Movie movie) {
         this.date = date;
-        this.time = time;
         this.movie = movie;
     }
 }

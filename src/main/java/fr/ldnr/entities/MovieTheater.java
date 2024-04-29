@@ -15,7 +15,7 @@ import java.util.Collection;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = "movies")
 public class MovieTheater implements Serializable {
 
     @Id
@@ -34,11 +34,12 @@ public class MovieTheater implements Serializable {
     private City city;
 
     @OneToMany(mappedBy = "movieTheater")
-    private Collection<Movie> movie;
+    private Collection<Movie> movies;
 
-    public MovieTheater(String name, String address, Collection<Movie> movie) {
+    public MovieTheater(String name, String address, City city, Collection<Movie> movies) {
         this.name = name;
         this.address = address;
-        this.movie = movie;
+        this.city = city;
+        this.movies = movies;
     }
 }
