@@ -56,8 +56,6 @@ public class IBusinessImpl implements IBusiness {
     @Override
     public Page<MovieTheater> findMovieTheaterByKeyword(String kw, int page) { return movieTheaterRepository.findByNameContains(kw, PageRequest.of(page, 2)); }
 
-    @Override
-    public void saveMovieTheater(MovieTheater movieTheater) { movieTheaterRepository.save(movieTheater); }
 
     //MOVIE
     @Override

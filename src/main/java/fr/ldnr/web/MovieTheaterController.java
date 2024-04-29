@@ -76,7 +76,7 @@ public class MovieTheaterController {
                 model.addAttribute("cityList", iBusinessImpl.findAllCity());
                 return "movieTheatersForm";
             }
-            iBusinessImpl.saveMovieTheater(movieTheater);
+            iBusinessImpl.createMovieTheater(movieTheater);
         }
         catch(Exception e) {
             redirectAttrs.addAttribute("error",e.getMessage());

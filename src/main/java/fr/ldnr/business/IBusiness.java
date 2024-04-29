@@ -25,7 +25,6 @@ public interface IBusiness {
     public List<MovieTheater> findAllMovieTheater();
     public Page<MovieTheater> findMovieTheaterByCity(Long idCity, int page);
     public Page<MovieTheater> findMovieTheaterByKeyword(String kw, int page);
-    public void saveMovieTheater(MovieTheater movieTheater);
 
     //MOVIE
     public void createMovie(Movie movie);
