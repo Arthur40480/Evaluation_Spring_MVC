@@ -64,6 +64,7 @@ public class SpringMvcApplication implements CommandLineRunner {
 		Movie pulpFiction = new Movie("Pulp Fiction", "Drame, Crime", "160", leGrandRex, sessionList);
 		Movie titanic = new Movie("Titanic", "Drame, Romance", "135", leBrady, sessionList);
 		Movie lesEvades = new Movie("Les Evadés", "Drame, Crime", "300", leBrady, sessionList);
+
 		movieRepository.save(lor);
 		movieRepository.save(inception);
 		movieRepository.save(laLaLand);

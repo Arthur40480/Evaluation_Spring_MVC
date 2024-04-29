@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class MovieTheaterController {
@@ -21,16 +23,24 @@ public class MovieTheaterController {
     IBusinessImpl iBusinessImpl;
 
     @GetMapping("/index")
-    public String index(Model model, @RequestParam(name = "idCity", defaultValue = "0") Long idCity) {
+    public String index(Model model, @RequestParam(name = "idCity", defaultValue = "0") Long idCity,
+                                     @ModelAttribute(name="error") String error) {
         List<City> cityList = iBusinessImpl.findAllCity();
         List<MovieTheater> movieTheaterList = null;
 
-        if(idCity > 0) {
-            movieTheaterList = iBusinessImpl.findMovieTheaterByCity(idCity);
-        } else {
+        if(idCity != 0) {
+            Optional<City> optionalCity = iBusinessImpl.findCityById(idCity);
+            if (!optionalCity.isPresent()) {
+                model.addAttribute("error", "ID CITY INVALID");
+                movieTheaterList = iBusinessImpl.findAllMovieTheater();
+            } else {
+                movieTheaterList = iBusinessImpl.findMovieTheaterByCity(idCity);
+            }
+        }else {
             movieTheaterList = iBusinessImpl.findAllMovieTheater();
         }
 
+        model.addAttribute("error", model.getAttribute("error"));
         model.addAttribute("cityList", cityList);
         model.addAttribute("movieTheaterList", movieTheaterList);
         return "movieTheaters";
