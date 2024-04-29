@@ -27,9 +27,10 @@ public class MovieTheaterController {
 
         if(idCity > 0) {
             movieTheaterList = iBusinessImpl.findMovieTheaterByCity(idCity);
+        } else {
+            movieTheaterList = iBusinessImpl.findAllMovieTheater();
         }
 
-        movieTheaterList = iBusinessImpl.findAllMovieTheater();
         model.addAttribute("cityList", cityList);
         model.addAttribute("movieTheaterList", movieTheaterList);
         return "movieTheaters";

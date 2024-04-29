@@ -7,15 +7,18 @@ import fr.ldnr.entities.Session;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface IBusiness {
     //CITY
     public void createCity(City city);
+    public Optional<City> findCityById(Long idCity);
     public List<City> findAllCity();
 
     //MOVIE_THEATER
     public void createMovieTheater(MovieTheater movieTheater);
+    public Optional<MovieTheater>  findMovieTheaterById(Long idMovieTheater);
     public List<MovieTheater> findAllMovieTheater();
     public List<MovieTheater> findMovieTheaterByCity(Long idCity);
 

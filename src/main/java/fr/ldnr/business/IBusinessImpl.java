@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class IBusinessImpl implements IBusiness {
@@ -30,11 +31,17 @@ public class IBusinessImpl implements IBusiness {
     public void createCity(City city) { cityRepository.save(city); }
 
     @Override
+    public Optional<City> findCityById(Long idCity) { return cityRepository.findById(idCity); }
+
+    @Override
     public List<City> findAllCity() { return cityRepository.findAll(); }
 
     //MOVIE_THEATER
     @Override
     public void createMovieTheater(MovieTheater movieTheater) { movieTheaterRepository.save(movieTheater); }
+
+    @Override
+    public Optional<MovieTheater> findMovieTheaterById(Long idMovieTheater) { return movieTheaterRepository.findById(idMovieTheater); }
 
     @Override
     public List<MovieTheater> findAllMovieTheater() { return movieTheaterRepository.findAll(); }
