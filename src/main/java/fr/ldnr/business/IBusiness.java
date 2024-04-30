@@ -16,7 +16,7 @@ public interface IBusiness {
 
     //CITY
     public void createCity(City city);
-    public Optional<City> findCityById(Long idCity);
+    public City findCityById(Long idCity);
     public List<City> findAllCity();
     public Page<City> findCityByKeyword(String kw, int page);
 

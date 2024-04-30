@@ -34,7 +34,10 @@ public class IBusinessImpl implements IBusiness {
     public void createCity(City city) { cityRepository.save(city); }
 
     @Override
-    public Optional<City> findCityById(Long idCity) { return cityRepository.findById(idCity); }
+    public City findCityById(Long idCity) {
+        Optional<City> optional = cityRepository.findById(idCity);
+        return optional.isPresent()? optional.get() : null;
+    }
 
     @Override
     public List<City> findAllCity() { return cityRepository.findAll(); }

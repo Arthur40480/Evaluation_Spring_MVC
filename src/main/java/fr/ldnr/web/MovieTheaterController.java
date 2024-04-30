@@ -37,8 +37,8 @@ public class MovieTheaterController {
         Page<MovieTheater> movieTheaterList = null;
 
         if(idCity != 0) {
-            Optional<City> optionalCity = iBusinessImpl.findCityById(idCity);
-            if (!optionalCity.isPresent()) {
+            City optional = iBusinessImpl.findCityById(idCity);
+            if (optional == null) {
                 model.addAttribute("error", "ID CITY INVALID");
                 movieTheaterList = iBusinessImpl.findMovieTheaterByKeyword(kw, page);
             }else {

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout"
+      lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Ajouter une ville</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="col-md-4 col-xs-8">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Saisir une nouvelle ville</div>
+            <div class="panel-body">
+                <form th:action="@{/saveCity (idCity=${city.id})}" method="post" th:object="${city}">
+
+                    <div class="form-group">
+                        <label class="control-label"> Nom : </label>
+                        <input class="form-control" type="text" name="name" th:value="${city.name}">
+                        <span th:errors="${city.name}" class="text-danger" ></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
