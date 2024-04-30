@@ -19,6 +19,7 @@ public interface IBusiness {
     public City findCityById(Long idCity);
     public List<City> findAllCity();
     public Page<City> findCityByKeyword(String kw, int page);
+    public void deleteCity(City city);
 
     //MOVIE_THEATER
     public void createMovieTheater(MovieTheater movieTheater);
@@ -26,6 +27,7 @@ public interface IBusiness {
     public List<MovieTheater> findAllMovieTheater();
     public Page<MovieTheater> findMovieTheaterByCity(Long idCity, int page);
     public Page<MovieTheater> findMovieTheaterByKeyword(String kw, int page);
+    public void deleteMovieTheater(MovieTheater movieTheater);
 
     //MOVIE
     public void createMovie(Movie movie);
@@ -33,6 +35,7 @@ public interface IBusiness {
     public Movie findMovieById(Long idMovie);
     public Page<Movie> findMovieByKeyword(String kw, int page);
     public Page<Movie> findMovieByMovieTheater(Long idMovieTheater, int page);
+    public void deleteMovie(Movie move);
 
     //SESSION
     public void createSession(Session session);
@@ -40,4 +43,5 @@ public interface IBusiness {
     public Page<Session> findAllSession(int page);
     public Page<Session> findSessionByMovie(Long idMovie, int page);
     public Page<Session> findSessionByDate(Date date, int page);
+    public void deleteSession(Session session);
 }

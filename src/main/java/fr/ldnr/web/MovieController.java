@@ -3,6 +3,7 @@ package fr.ldnr.web;
 import fr.ldnr.business.IBusinessImpl;
 import fr.ldnr.entities.Movie;
 import fr.ldnr.entities.MovieTheater;
+import fr.ldnr.entities.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 @Controller
 public class MovieController {
@@ -30,8 +29,7 @@ public class MovieController {
     @GetMapping("/movie")
     public String movie(Model model, @RequestParam(name="page" , defaultValue = "0") int page,
                                      @RequestParam(name = "idMovieTheater", defaultValue = "0") Long idMovieTheater,
-                                     @RequestParam(name = "keyword", defaultValue = "") String kw,
-                                     @ModelAttribute(name="error") String error) {
+                                     @RequestParam(name = "keyword", defaultValue = "") String kw) {
         Page<Movie> movieList = null;
 
         if(idMovieTheater != 0) {
@@ -101,5 +99,29 @@ public class MovieController {
             logger.error("[MOVIE CONTROLLER : SAVE MOVIE] : {} " , e.getMessage());
         }
         return "redirect:/movie";
+    }
+
+    @GetMapping("/deleteMovie")
+    public String deleteCity(Long idMovie, Model model, RedirectAttributes redirectAttributes) {
+        try {
+            Movie movieToDelete = iBusinessImpl.findMovieById(idMovie);
+            Page<Session> sessionList= iBusinessImpl.findSessionByMovie(idMovie, 0);
+            if (sessionList.isEmpty()) {
+                iBusinessImpl.deleteMovie(movieToDelete);
+            }else {
+                model.addAttribute("error", "SUPPRESSION IMPOSSIBLE : Des séances sont associées à ce film. Veuillez d'abord supprimer les séances affiliées avant de supprimer le film.");
+            }
+
+            Page<Movie> movieList = iBusinessImpl.findMovieByKeyword("", 0);
+            model.addAttribute("movieList", movieList);
+            model.addAttribute("keyword", "");
+            model.addAttribute("currentPage", 0);
+            model.addAttribute("pages", new int[movieList.getTotalPages()]);
+
+        } catch (Exception e) {
+            redirectAttributes.addAttribute("error",e.getMessage());
+            logger.error("[MOVIE CONTROLLER : DELETE] : {} " , e.getMessage());
+        }
+        return "movie";
     }
 }

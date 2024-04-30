@@ -45,6 +45,8 @@ public class IBusinessImpl implements IBusiness {
     @Override
     public Page<City> findCityByKeyword(String kw, int page) { return cityRepository.findByNameContains(kw, PageRequest.of(page, 2)); }
 
+    @Override
+    public void deleteCity(City city) { cityRepository.delete(city); }
 
     //MOVIE_THEATER
     @Override
@@ -65,6 +67,8 @@ public class IBusinessImpl implements IBusiness {
     @Override
     public Page<MovieTheater> findMovieTheaterByKeyword(String kw, int page) { return movieTheaterRepository.findByNameContains(kw, PageRequest.of(page, 2)); }
 
+    @Override
+    public void deleteMovieTheater(MovieTheater movieTheater) { movieTheaterRepository.delete(movieTheater); }
 
     //MOVIE
     @Override
@@ -85,6 +89,8 @@ public class IBusinessImpl implements IBusiness {
     @Override
     public Page<Movie> findMovieByMovieTheater(Long idMovieTheater, int page) { return movieRepository.findByMovieTheaterId(idMovieTheater, PageRequest.of(page, 2)); }
 
+    @Override
+    public void deleteMovie(Movie movie) { movieRepository.delete(movie); }
 
     //SESSION
     @Override
@@ -104,4 +110,7 @@ public class IBusinessImpl implements IBusiness {
 
     @Override
     public Page<Session> findSessionByDate(Date date, int page) { return sessionRepository.findByDate(date, PageRequest.of(page, 2)); }
+
+    @Override
+    public void deleteSession(Session session) { sessionRepository.delete(session); }
 }

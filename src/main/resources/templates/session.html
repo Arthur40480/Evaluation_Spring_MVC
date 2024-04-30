@@ -10,7 +10,7 @@
 
 <body>
     <div layout:fragment="content">
-        <div class="text-danger" th:if="${error}" th:text="${error}">	</div>
+        <div class="alert alert-danger" th:if="${error}" th:text="${error}" role="alert"></div>
 
             <div class="panel panel-primary">
                 <div class="panel-heading">Séance</div>
@@ -41,7 +41,7 @@
                                 <a class="btn btn-info" th:href="@{ /editSession (idSession=${s.id}) }" >Edit <i class="fas fa-pen"></i></a>
                             </td>
                             <td>
-                                <a class="btn btn-danger" onclick="return confirm('Are you sure ?')" >Delete <i class="fas fa-trash-alt"></i></a>
+                                <a class="btn btn-danger" onclick="return confirm('Voulez vous confirmer la suppression ?')" th:href="@{ /deleteSession (idSession=${s.id})}" >Delete <i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                     </table>

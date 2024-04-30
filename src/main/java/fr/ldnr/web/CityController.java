@@ -103,4 +103,27 @@ public class CityController {
         }
         return "redirect:/city";
     }
+
+    @GetMapping("/deleteCity")
+    public String deleteCity(Long idCity, Model model, RedirectAttributes redirectAttributes) {
+        try {
+            City cityToDelete = iBusinessImpl.findCityById(idCity);
+            Page<MovieTheater> movieTheaterList= iBusinessImpl.findMovieTheaterByCity(cityToDelete.getId(), 0);
+            if (movieTheaterList.isEmpty()) {
+                iBusinessImpl.deleteCity(cityToDelete);
+            }else {
+                model.addAttribute("error", "SUPPRESSION IMPOSSIBLE : Des cinémas sont associés à cette ville. Veuillez d'abord supprimer les cinémas affiliés avant de supprimer la ville.");
+            }
+            Page<City> cityList = iBusinessImpl.findCityByKeyword("", 0);
+            model.addAttribute("cityList", cityList);
+            model.addAttribute("keyword", "");
+            model.addAttribute("currentPage", 0);
+            model.addAttribute("pages", new int[cityList.getTotalPages()]);
+
+        } catch (Exception e) {
+            redirectAttributes.addAttribute("error",e.getMessage());
+            logger.error("[CITY CONTROLLER : DELETE] : {} " , e.getMessage());
+        }
+        return "city";
+    }
 }

@@ -1,6 +1,7 @@
 package fr.ldnr.web;
 
 import fr.ldnr.business.IBusinessImpl;
+import fr.ldnr.entities.City;
 import fr.ldnr.entities.Movie;
 import fr.ldnr.entities.MovieTheater;
 import fr.ldnr.entities.Session;
@@ -13,15 +14,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.sql.SQLOutput;
 import java.util.Date;
-import java.util.Optional;
+import java.util.List;
 
 @Controller
 public class SessionController {
@@ -36,8 +35,7 @@ public class SessionController {
     public String session(Model model,
                           @RequestParam(name = "page", defaultValue = "0") int page,
                           @RequestParam(name = "idMovie", defaultValue = "0") Long idMovie,
-                          @RequestParam(name = "date", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
-                          @ModelAttribute(name = "error") String error) {
+                          @RequestParam(name = "date", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
         Page<Session> sessionList = null;
 
         if (idMovie != 0) {
@@ -59,7 +57,6 @@ public class SessionController {
         model.addAttribute("idMovie", idMovie);
         model.addAttribute("currentPage", page);
         model.addAttribute("pages", new int[sessionList.getTotalPages()]);
-        model.addAttribute("error", error);
         model.addAttribute("sessionList", sessionList.getContent());
         return "session";
     }
@@ -113,5 +110,26 @@ public class SessionController {
             logger.error("[SESSION CONTROLLER : SAVE SESSION] : {} " , e.getMessage());
         }
         return "redirect:/session";
+    }
+
+    @GetMapping("/deleteSession")
+    public String deleteCity(Long idSession, Model model, RedirectAttributes redirectAttributes) {
+        try {
+            Session sessionToDelete = iBusinessImpl.findSessionById(idSession);
+            if (sessionToDelete != null) {
+                iBusinessImpl.deleteSession(sessionToDelete);
+            }else {
+                model.addAttribute("error", "SUPPRESSION IMPOSSIBLE : La séance n'éxiste pas");
+            }
+            Page<Session> sessionList = iBusinessImpl.findAllSession(0);
+            model.addAttribute("sessionList", sessionList);
+            model.addAttribute("currentPage", 0);
+            model.addAttribute("pages", new int[sessionList.getTotalPages()]);
+
+        } catch (Exception e) {
+            redirectAttributes.addAttribute("error",e.getMessage());
+            logger.error("[SESSION CONTROLLER : DELETE] : {} " , e.getMessage());
+        }
+        return "session";
     }
 }
