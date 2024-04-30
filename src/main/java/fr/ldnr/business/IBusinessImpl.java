@@ -32,6 +32,10 @@ public class IBusinessImpl implements IBusiness {
     @Autowired
     SessionRepository sessionRepository;
 
+    public IBusinessImpl() {
+        cart = new HashMap<>();
+    }
+
     //CITY
     @Override
     public void createCity(City city) { cityRepository.save(city); }
@@ -116,4 +120,8 @@ public class IBusinessImpl implements IBusiness {
 
     @Override
     public void deleteSession(Session session) { sessionRepository.delete(session); }
+
+    //CART
+    @Override
+    public HashMap<Long, Session> getCart() { return this.cart; }
 }

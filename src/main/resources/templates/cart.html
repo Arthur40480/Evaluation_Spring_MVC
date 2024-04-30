@@ -3,7 +3,7 @@
       xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate = "layout" lang="fr">
 <head>
-    <meta charset="ISO-8859-1">
+    <meta charset="utf-8">
     <title>Panier</title>
 </head>
 <body>
@@ -14,9 +14,9 @@
                 <div class="panel-body">
                     <table class="table">
                         <tr>
-                            <th>Date</th> <th>Horaire</th> <th>Prix</th> <th>Quantité</th> <th>Film</th> <th>Cinéma</th>
+                            <th>Date</th> <th>Horaire</th> <th>Prix</th> <th>QuantitÃ©</th> <th>Film</th> <th>CinÃ©ma</th>
                         </tr>
-                        <tr th:each="a:${listCart.entrySet()}">
+                        <tr th:each="a:${cart.entrySet()}">
                             <td th:text="${a.value.date}"></td>
                             <td th:text="${a.value.time}"></td>
                             <td th:text="${a.value.price}"></td>
@@ -29,7 +29,7 @@
                         </tr>
                     </table>
                     <div>
-                        Total: ?
+                        Total: â‚¬
                     </div>
                     <br>
                     <a class="btn btn-primary">Valider la commande</a>

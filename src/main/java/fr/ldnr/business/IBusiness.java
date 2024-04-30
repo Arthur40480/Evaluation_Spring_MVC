@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,4 +45,7 @@ public interface IBusiness {
     public Page<Session> findSessionByMovie(Long idMovie, int page);
     public Page<Session> findSessionByDate(Date date, int page);
     public void deleteSession(Session session);
+
+    //CART
+    public HashMap<Long, Session> getCart();
 }
