@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th        = "http://thymeleaf.org"
+      xmlns:layout    = "http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate = "layout"
+      lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Les Villes</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="text-danger" th:if="${error}" th:text="${error}">	</div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">Ville</div>
+
+        <div class="panel-body">
+            <form th:action="@{/city}" method="get">
+                <label>Keyword</label>
+                <input type="text" name="keyword" th:value="${keyword}">
+                <button type="submit" class="btn btn-primary">Rechercher <i class="fas fa-search"></i></button>
+            </form>
+        </div>
+
+        <div class="col-md-6" style="margin-bottom: 10px;">
+            <a class="btn btn-success">Ajouter une ville <i class="fas fa-city"></i> </a>
+        </div>
+
+        <div class="panel-body">
+            <table class = "table">
+                <tr>
+                    <th>Id</th> <th>Nom</th>
+                </tr>
+                <tr th:each="c:${cityList}">
+                    <td th:text="${c.id}"> </td>
+                    <td th:text="${c.name}"> </td>
+                    <td>
+                        <a class="btn btn-info">Edit <i class="fas fa-pen"></i></a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" onclick="return confirm('Are you sure ?')" >Delete <i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            </table>
+
+            <ul class = "nav nav-pills">
+                <li th:class="${currentPage==status.index}?'active':''"  th:each="page,status:${pages}">
+                    <a th:href="@{/city(page=${status.index}, keyword=${keyword} ) }" th:text="${status.index}"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

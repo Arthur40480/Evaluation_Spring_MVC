@@ -39,6 +39,9 @@ public class IBusinessImpl implements IBusiness {
     @Override
     public List<City> findAllCity() { return cityRepository.findAll(); }
 
+    @Override
+    public Page<City> findCityByKeyword(String kw, int page) { return cityRepository.findByNameContains(kw, PageRequest.of(page, 2)); }
+
 
     //MOVIE_THEATER
     @Override

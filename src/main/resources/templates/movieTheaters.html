@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <ul class="nav nav-pills">
                 <li th:each="city, status : ${cityList}" th:class="${idCity == city.id} ? 'active' : ''">
-                    <a th:text="${city.name}" th:href="@{/city(idCity=${city.id})}"></a>
+                    <a th:text="${city.name}" th:href="@{/cityNavBar(idCity=${city.id})}"></a>
                 </li>
             </ul>
         </div>
