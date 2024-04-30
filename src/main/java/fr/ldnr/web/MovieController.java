@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -26,7 +25,7 @@ public class MovieController {
     @Autowired
     IBusinessImpl iBusinessImpl;
 
-    private final Logger logger = LoggerFactory.getLogger(CityController.class);
+    private final Logger logger = LoggerFactory.getLogger(MovieController.class);
 
     @GetMapping("/movie")
     public String movie(Model model, @RequestParam(name="page" , defaultValue = "0") int page,
@@ -74,7 +73,6 @@ public class MovieController {
                 model.addAttribute("movieTheaterList", iBusinessImpl.findAllMovieTheater());
                 return "movieForm";
             }
-            System.out.println(movie);
             iBusinessImpl.createMovie(movie);
         }
         catch(Exception e) {

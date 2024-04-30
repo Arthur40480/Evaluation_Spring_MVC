@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="col-md-6" style="margin-bottom: 10px;">
-                    <a class="btn btn-success">Ajouter une séance <i class="fas fa-clock"></i></a>
+                    <a class="btn btn-success" th:href="@{/sessionForm}">Ajouter une séance <i class="fas fa-clock"></i></a>
                 </div>
 
                 <div class="panel-body">
@@ -35,7 +35,7 @@
                         </tr>
                         <tr th:each="s:${sessionList}">
                             <td th:text="${#dates.format(s.date, 'dd/MM')}"> </td>
-                            <td th:text="${#dates.format(s.time, 'HH:mm')}"></td>
+                            <td th:text="${s.time}"></td>
                             <td th:text="${s.movie.name}"> </td>
                             <td th:text="${s.movie.movieTheater.name}"> </td>
                         </tr>

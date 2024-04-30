@@ -3,17 +3,22 @@ package fr.ldnr.web;
 import fr.ldnr.business.IBusinessImpl;
 import fr.ldnr.entities.Movie;
 import fr.ldnr.entities.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -21,6 +26,9 @@ public class SessionController {
 
     @Autowired
     IBusinessImpl iBusinessImpl;
+
+    private final Logger logger = LoggerFactory.getLogger(SessionController.class);
+
 
     @GetMapping("/session")
     public String session(Model model,
@@ -52,5 +60,34 @@ public class SessionController {
         model.addAttribute("error", error);
         model.addAttribute("sessionList", sessionList.getContent());
         return "session";
+    }
+
+    @GetMapping("/sessionForm")
+    public String article(Model model) {
+        model.addAttribute("session" , new Session());
+        try {
+            model.addAttribute("movieList", iBusinessImpl.findAllMovie());
+        } catch (Exception e) {
+            model.addAttribute("error",e.getMessage());
+            logger.error("[SESSION CONTROLLER : MANAGE NEW SESSION] : {} " , e.getMessage());
+        }
+        return "sessionForm";
+    }
+
+    @PostMapping("/saveSession")
+    public String save(@Valid Session session, BindingResult bindingResult, Model model, RedirectAttributes redirectAttrs) {
+        try {
+            if(bindingResult.hasErrors()) {
+                model.addAttribute("movieList", iBusinessImpl.findAllMovie());
+                return "sessionForm";
+            }
+            System.out.println(session);
+            iBusinessImpl.createSession(session);
+        }
+        catch(Exception e) {
+            redirectAttrs.addAttribute("error",e.getMessage());
+            logger.error("[SESSION CONTROLLER : SAVE SESSION] : {} " , e.getMessage());
+        }
+        return "redirect:/session";
     }
 }

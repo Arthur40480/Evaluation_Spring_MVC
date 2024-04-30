@@ -94,15 +94,15 @@ public class SpringMvcApplication implements CommandLineRunner {
 		movieRepository.save(titanic);
 		movieRepository.save(lesEvades);
 
-		Session mondaySession1 = new Session(new Date(124, 5, 21), Time.valueOf("11:00:00"), lor);
-		Session mondaySession2 = new Session(new Date(124, 5, 21), Time.valueOf("15:00:00"), interstellar);
-		Session mondaySession3 = new Session(new Date(124, 5, 21), Time.valueOf("21:30:00"), inception);
-		Session tuesdaySession1 = new Session(new Date(124, 5, 22), Time.valueOf("23:00:00"), lesEvades);
-		Session tuesdaySession2 = new Session(new Date(124, 5, 22), Time.valueOf("09:15:00"), laLaLand);
-		Session tuesdaySession3 = new Session(new Date(124, 5, 22), Time.valueOf("12:00:00"), leParrain);
-		Session wednesdaySession1 = new Session(new Date(124, 5, 23), Time.valueOf("16:00:00"), forestGump);
-		Session wednesdaySession2 = new Session(new Date(124, 5, 23), Time.valueOf("12:30:00"), pulpFiction);
-		Session wednesdaySession3 = new Session(new Date(124, 5, 23), Time.valueOf("10:45:00"), titanic);
+		Session mondaySession1 = new Session(new Date(124, 5, 21), "11:00", lor);
+		Session mondaySession2 = new Session(new Date(124, 5, 21), "17:00", interstellar);
+		Session mondaySession3 = new Session(new Date(124, 5, 21), "20:30", inception);
+		Session tuesdaySession1 = new Session(new Date(124, 5, 22), "22:15", lesEvades);
+		Session tuesdaySession2 = new Session(new Date(124, 5, 22), "00:00", laLaLand);
+		Session tuesdaySession3 = new Session(new Date(124, 5, 22), "09:45", leParrain);
+		Session wednesdaySession1 = new Session(new Date(124, 5, 23), "11:35", forestGump);
+		Session wednesdaySession2 = new Session(new Date(124, 5, 23), "18:25", pulpFiction);
+		Session wednesdaySession3 = new Session(new Date(124, 5, 23), "19:00", titanic);
 		sessionRepository.save(mondaySession1);
 		sessionRepository.save(mondaySession2);
 		sessionRepository.save(mondaySession3);
