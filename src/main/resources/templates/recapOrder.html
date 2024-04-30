@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout"
+      lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Récapitulatif</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+
+    <div class="col-md-4 col-xs-5">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Informations de livraison</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>Nom du Client : </label>
+                    <label th:text="${customer.name}" th:value="${customer.name}"> </label>
+                </div>
+                <div class="form-group">
+                    <label>Prénom du Client : </label>
+                    <label th:text="${customer.sname}" th:value="${customer.sname}"> </label>
+                </div>
+                <div class="form-group">
+                    <label>Email : </label>
+                    <label th:text="${customer.email}" th:value="${customer.email}"> </label>
+                </div>
+                <div class="form-group">
+                    <label>Adresse : </label>
+                    <label th:text="${customer.address}" th:value="${customer.address}"> </label>
+                </div>
+                <div class="form-group">
+                    <label>Téléphone : </label>
+                    <label th:text="${customer.phone}" th:value="${customer.phone}"> </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xs-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Contenu de votre commande</div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th class="col-md-3">Titre</th>
+                        <th class="col-md-2">Date</th>
+                        <th class="col-md-2">Prix</th>
+                        <th class="col-md-2">Quantite</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="a:${cart.entrySet()}">
+                        <td th:text="${a.value.movie.name}"> </td>
+                        <td th:text="${#dates.format(a.value.date, 'dd/MM')}"> </td>
+                        <td th:text="${a.value.price}"> </td>
+                        <td th:text="${a.value.quantity}"> </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="text-right" colspan="3">Montant total :</td>
+                        <td th:text="${total}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <a class="btn btn-success text-center" th:href="@{/confirmOrder}">Valider commande</a>
+                <a class="btn btn-danger text-center" th:href="@{/order}">Précédent</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+
+</html>

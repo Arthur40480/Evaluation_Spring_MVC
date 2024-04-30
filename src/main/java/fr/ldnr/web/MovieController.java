@@ -49,6 +49,7 @@ public class MovieController {
         model.addAttribute("pages", new int[movieList.getTotalPages()]);
         model.addAttribute("error", model.getAttribute("error"));
         model.addAttribute("movieList", movieList);
+        model.addAttribute("nbcart", iBusinessImpl.getCart().size());
         return "movie";
     }
 
@@ -57,6 +58,7 @@ public class MovieController {
         model.addAttribute("movie" , new Movie());
         try {
             model.addAttribute("movieTheaterList", iBusinessImpl.findAllMovieTheater());
+            model.addAttribute("nbcart", iBusinessImpl.getCart().size());
         } catch (Exception e) {
             model.addAttribute("error",e.getMessage());
             logger.error("[MOVIE CONTROLLER : MANAGE NEW MOVIE] : {} " , e.getMessage());
@@ -71,6 +73,7 @@ public class MovieController {
             movie = iBusinessImpl.findMovieById(idMovie);
             model.addAttribute("movieTheaterList", iBusinessImpl.findAllMovieTheater());
             model.addAttribute("movie", movie);
+            model.addAttribute("nbcart", iBusinessImpl.getCart().size());
         } catch (Exception e) {
             model.addAttribute("error",e.getMessage());
             logger.error("[MOVIE CONTROLLER : EDIT] : {} " , e.getMessage());
@@ -117,6 +120,7 @@ public class MovieController {
             model.addAttribute("keyword", "");
             model.addAttribute("currentPage", 0);
             model.addAttribute("pages", new int[movieList.getTotalPages()]);
+            model.addAttribute("nbcart", iBusinessImpl.getCart().size());
 
         } catch (Exception e) {
             redirectAttributes.addAttribute("error",e.getMessage());

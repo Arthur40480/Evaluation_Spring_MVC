@@ -1,13 +1,7 @@
 package fr.ldnr.business;
 
-import fr.ldnr.dao.CityRepository;
-import fr.ldnr.dao.MovieRepository;
-import fr.ldnr.dao.MovieTheaterRepository;
-import fr.ldnr.dao.SessionRepository;
-import fr.ldnr.entities.City;
-import fr.ldnr.entities.Movie;
-import fr.ldnr.entities.MovieTheater;
-import fr.ldnr.entities.Session;
+import fr.ldnr.dao.*;
+import fr.ldnr.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,7 +15,8 @@ import java.util.Optional;
 @Service
 public class IBusinessImpl implements IBusiness {
 
-    public HashMap<Long, Session> cart;
+    private HashMap<Long, Session> cart;
+    private Customer customer;
 
     @Autowired
     CityRepository cityRepository;
@@ -31,9 +26,16 @@ public class IBusinessImpl implements IBusiness {
     MovieRepository movieRepository;
     @Autowired
     SessionRepository sessionRepository;
+    @Autowired
+    CustomerRepository customerRepository;
+    @Autowired
+    OrderRepository orderRepository;
+    @Autowired
+    OrderItemRepository orderItemRepository;
 
     public IBusinessImpl() {
         cart = new HashMap<>();
+        customer = null;
     }
 
     //CITY
@@ -148,4 +150,18 @@ public class IBusinessImpl implements IBusiness {
         }
         return total;
     }
+
+    //CUSTOMER
+    public void setCustomer(Customer customer) { this.customer = customer; }
+
+    public Customer getCustomer() { return this.customer; }
+
+    @Override
+    public void createCustomer(Customer customer) { customerRepository.save(customer); }
+
+    //ORDER
+    public void createOrder(Order order) { orderRepository.save(order); }
+
+    //ORDER_ITEM
+    public void createOrderItem(OrderItem orderItem) { orderItemRepository.save(orderItem); }
 }

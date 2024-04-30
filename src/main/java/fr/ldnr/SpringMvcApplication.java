@@ -37,8 +37,8 @@ public class SpringMvcApplication implements CommandLineRunner {
 	}
 
 	private void generateDatas() {
-		double normalPrice = 7.9;
-		double extraPrice = 12.9;
+		double normalPrice = 7;
+		double extraPrice = 12;
 
 		List<MovieTheater> movieTheaterList = null;
 		List<Movie> movieList = null;

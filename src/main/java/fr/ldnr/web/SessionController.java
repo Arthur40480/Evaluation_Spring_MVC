@@ -58,6 +58,7 @@ public class SessionController {
         model.addAttribute("currentPage", page);
         model.addAttribute("pages", new int[sessionList.getTotalPages()]);
         model.addAttribute("sessionList", sessionList.getContent());
+        model.addAttribute("nbcart", iBusinessImpl.getCart().size());
         return "session";
     }
 
@@ -66,6 +67,7 @@ public class SessionController {
         model.addAttribute("session" , new Session());
         try {
             model.addAttribute("movieList", iBusinessImpl.findAllMovie());
+            model.addAttribute("nbcart", iBusinessImpl.getCart().size());
         } catch (Exception e) {
             model.addAttribute("error",e.getMessage());
             logger.error("[SESSION CONTROLLER : MANAGE NEW SESSION] : {} " , e.getMessage());
@@ -81,6 +83,7 @@ public class SessionController {
             model.addAttribute("movieList", iBusinessImpl.findAllMovie());
             model.addAttribute("session", session);
             model.addAttribute("idSession", idSession);
+            model.addAttribute("nbcart", iBusinessImpl.getCart().size());
         }
         catch (Exception e) {
             model.addAttribute("error",e.getMessage());
@@ -125,6 +128,7 @@ public class SessionController {
             model.addAttribute("sessionList", sessionList);
             model.addAttribute("currentPage", 0);
             model.addAttribute("pages", new int[sessionList.getTotalPages()]);
+            model.addAttribute("nbcart", iBusinessImpl.getCart().size());
 
         } catch (Exception e) {
             redirectAttributes.addAttribute("error",e.getMessage());

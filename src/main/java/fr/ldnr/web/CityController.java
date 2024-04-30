@@ -37,6 +37,7 @@ public class CityController {
         model.addAttribute("keyword", kw);
         model.addAttribute("currentPage", page);
         model.addAttribute("pages", new int[cityList.getTotalPages()]);
+        model.addAttribute("nbcart", iBusinessImpl.getCart().size());
         return "city";
     }
 
@@ -62,6 +63,7 @@ public class CityController {
     public String article(Model model) {
         try {
             model.addAttribute("city" , new City());
+            model.addAttribute("nbcart", iBusinessImpl.getCart().size());
         } catch (Exception e) {
             model.addAttribute("error",e.getMessage());
             logger.error("[MOVIE CONTROLLER : MANAGE NEW MOVIE] : {} " , e.getMessage());
@@ -75,6 +77,7 @@ public class CityController {
         try {
             city = iBusinessImpl.findCityById(idCity);
             model.addAttribute("city", city);
+            model.addAttribute("nbcart", iBusinessImpl.getCart().size());
         } catch (Exception e) {
             model.addAttribute("error",e.getMessage());
             logger.error("[MOVIE CONTROLLER : EDIT] : {} " , e.getMessage());
@@ -119,6 +122,7 @@ public class CityController {
             model.addAttribute("keyword", "");
             model.addAttribute("currentPage", 0);
             model.addAttribute("pages", new int[cityList.getTotalPages()]);
+            model.addAttribute("nbcart", iBusinessImpl.getCart().size());
 
         } catch (Exception e) {
             redirectAttributes.addAttribute("error",e.getMessage());

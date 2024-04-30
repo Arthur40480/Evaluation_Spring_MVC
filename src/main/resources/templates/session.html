@@ -39,7 +39,7 @@
                             <td th:text="${s.movie.movieTheater.name}"> </td>
                             <td th:text="${s.price}"> </td>
                             <td>
-                                <a class="btn btn-success">Réserver  <i class="fas fa-ticket-alt"></i></a>
+                                <a class="btn btn-success" th:href="@{ /addToCart (idSession=${s.id}, page=${currentPage}) }">Réserver  <i class="fas fa-ticket-alt"></i></a>
                             </td>
                             <td>
                                 <a class="btn btn-info" th:href="@{ /editSession (idSession=${s.id}) }" >Edit <i class="fas fa-pen"></i></a>

@@ -33,7 +33,7 @@
                     <a th:href="@{/city}"><strong>[Gestion des villes <i class="fas fa-city"></i>]</strong></a>
                 </li>
                 <li>
-                    <a th:href="@{/cart}" class="fa fa-shopping-cart"></a>
+                    <a th:href="@{/cart}" class="fa fa-shopping-cart" th:text="${nbcart}"></a>
                 </li>
             </ul>
         </div>

@@ -52,6 +52,7 @@ public class MovieTheaterController {
         model.addAttribute("error", model.getAttribute("error"));
         model.addAttribute("cityList", cityList);
         model.addAttribute("movieTheaterList", movieTheaterList);
+        model.addAttribute("nbcart", iBusinessImpl.getCart().size());
         return "movieTheaters";
     }
 
@@ -60,6 +61,7 @@ public class MovieTheaterController {
         model.addAttribute("movieTheater" , new MovieTheater());
         try {
             model.addAttribute("cityList", iBusinessImpl.findAllCity());
+            model.addAttribute("nbcart", iBusinessImpl.getCart().size());
         } catch (Exception e) {
             model.addAttribute("error",e.getMessage());
             logger.error("[MOVIE_THEATER CONTROLLER : MANAGE NEW MOVIE_THEATER] : {} " , e.getMessage());
@@ -74,6 +76,7 @@ public class MovieTheaterController {
             movieTheater = iBusinessImpl.findMovieTheaterById(idMovieTheater);
             model.addAttribute("cityList", iBusinessImpl.findAllCity());
             model.addAttribute("movieTheater", movieTheater);
+            model.addAttribute("nbcart", iBusinessImpl.getCart().size());
         } catch (Exception e) {
             model.addAttribute("error",e.getMessage());
             logger.error("[MOVIE_THEATER CONTROLLER : EDIT] : {} " , e.getMessage());
@@ -121,6 +124,7 @@ public class MovieTheaterController {
             model.addAttribute("keyword", "");
             model.addAttribute("currentPage", 0);
             model.addAttribute("pages", new int[movieTheaterList.getTotalPages()]);
+            model.addAttribute("nbcart", iBusinessImpl.getCart().size());
 
         } catch (Exception e) {
             redirectAttributes.addAttribute("error",e.getMessage());

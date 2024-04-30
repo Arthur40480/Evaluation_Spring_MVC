@@ -16,23 +16,25 @@
                         <tr>
                             <th>Date</th> <th>Horaire</th> <th>Prix</th> <th>Quantité</th> <th>Film</th> <th>Cinéma</th>
                         </tr>
+                        <div class="alert alert-danger" th:if="${empty}" th:text="${empty}" role="alert"></div>
                         <tr th:each="a:${cart.entrySet()}">
-                            <td th:text="${a.value.date}"></td>
+                            <td th:text="${#dates.format(a.value.date, 'dd/MM')}"></td>
                             <td th:text="${a.value.time}"></td>
                             <td th:text="${a.value.price}"></td>
                             <td th:text="${a.value.quantity}"></td>
                             <td th:text="${a.value.movie.name}"></td>
                             <td th:text="${a.value.movie.movieTheater.name}"></td>
                             <td>
-                                <a class="btn btn-danger" >Supprimer du panier <i class="fas fa-trash-alt"></i></a>
+                                <a class="btn btn-danger" th:href="@{ /removeToCart (idSession=${a.value.id})}">Supprimer du panier <i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
+                        <div>
+                            <td class = "text-right"> <strong> Montant total : </strong></td>
+                            <td  th:text="${total}"></td>
+                        </div>
                     </table>
-                    <div>
-                        Total: €
-                    </div>
                     <br>
-                    <a class="btn btn-primary">Valider la commande</a>
+                    <a class="btn btn-primary" th:href="@{/customerForm}">Commander</a>
                 </div>
             </div>
         </div>

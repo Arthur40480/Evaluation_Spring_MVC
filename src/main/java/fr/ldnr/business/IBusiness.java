@@ -1,9 +1,6 @@
 package fr.ldnr.business;
 
-import fr.ldnr.entities.City;
-import fr.ldnr.entities.Movie;
-import fr.ldnr.entities.MovieTheater;
-import fr.ldnr.entities.Session;
+import fr.ldnr.entities.*;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -52,4 +49,13 @@ public interface IBusiness {
     public void removeToCart(Long idSession);
     public void clearCart();
     public double getTotalAmount();
+
+    //CUSTOMER
+    public void createCustomer(Customer customer);
+
+    //ORDER
+    public void createOrder(Order order);
+
+    //ORDER_ITEM
+    public void createOrderItem(OrderItem orderItem);
 }
