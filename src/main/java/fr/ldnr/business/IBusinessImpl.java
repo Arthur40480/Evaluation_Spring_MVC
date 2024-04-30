@@ -124,4 +124,28 @@ public class IBusinessImpl implements IBusiness {
     //CART
     @Override
     public HashMap<Long, Session> getCart() { return this.cart; }
+
+    @Override
+    public void addToCart(Session session) {
+        Session s = cart.get(session.getId());
+        if(s != null) {
+            s.setQuantity(s.getQuantity() + 1);
+        }
+        else cart.put(session.getId(), session);
+    }
+
+    @Override
+    public void removeToCart(Long idSession) { cart.remove(idSession); }
+
+    @Override
+    public void clearCart() { cart.clear(); }
+
+    @Override
+    public double getTotalAmount() {
+        double total = 0;
+        for(Session session : cart.values()) {
+            total += session.getPrice() * session.getQuantity();
+        }
+        return total;
+    }
 }

@@ -48,4 +48,8 @@ public interface IBusiness {
 
     //CART
     public HashMap<Long, Session> getCart();
+    public void addToCart(Session session);
+    public void removeToCart(Long idSession);
+    public void clearCart();
+    public double getTotalAmount();
 }
