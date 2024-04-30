@@ -14,7 +14,11 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">Saisir une nouvelle séance</div>
                 <div class="panel-body">
-                    <form th:action="@{/saveSession}" method="post" th:object="${session}">
+                    <form th:action="@{/saveSession(idSession=${idSession})}" method="post" th:object="${session}">
+                        <div class="form-group" th:if="${idSession != null}">
+                            <label class="control-label">Id :</label>
+                            <input class="form-control" type="text" name="idSession" th:value="${idSession}" disabled>
+                        </div>
                         <div class="form-group">
                             <label class="control-label"> Date : </label>
                             <input class="form-control" type="date" name="date" th:value="${session.date}">
@@ -22,7 +26,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label"> Horaire : </label>
-                            <input class="form-control" type="time" name="time" th:value="${session.time}">
+                            <input class="form-control" type="text" name="time" th:value="${session.time}">
                             <span th:errors="${session.time}" class="text-danger"></span>
                         </div>
                         <div class="form-group">

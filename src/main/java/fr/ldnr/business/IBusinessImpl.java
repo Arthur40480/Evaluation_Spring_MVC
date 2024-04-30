@@ -45,7 +45,10 @@ public class IBusinessImpl implements IBusiness {
     public void createMovieTheater(MovieTheater movieTheater) { movieTheaterRepository.save(movieTheater); }
 
     @Override
-    public Optional<MovieTheater> findMovieTheaterById(Long idMovieTheater) { return movieTheaterRepository.findById(idMovieTheater); }
+    public MovieTheater findMovieTheaterById(Long idMovieTheater) {
+        Optional<MovieTheater> optional = movieTheaterRepository.findById(idMovieTheater);
+        return optional.isPresent()? optional.get() : null;
+    }
 
     @Override
     public List<MovieTheater> findAllMovieTheater() { return movieTheaterRepository.findAll(); }
@@ -62,7 +65,10 @@ public class IBusinessImpl implements IBusiness {
     public void createMovie(Movie movie) { movieRepository.save(movie); }
 
     @Override
-    public Optional<Movie> findMovieById(Long idMovie) { return movieRepository.findById(idMovie); }
+    public Movie findMovieById(Long idMovie) {
+        Optional<Movie> optional = movieRepository.findById(idMovie);
+        return optional.isPresent()? optional.get() : null;
+    }
 
     @Override
     public List<Movie> findAllMovie() { return movieRepository.findAll(); }
@@ -77,6 +83,12 @@ public class IBusinessImpl implements IBusiness {
     //SESSION
     @Override
     public void createSession(Session session) { sessionRepository.save(session); }
+
+    @Override
+    public Session findSessionById(Long idSession) {
+        Optional<Session> optional = sessionRepository.findById(idSession);
+        return optional.isPresent()? optional.get() : null;
+    }
 
     @Override
     public Page<Session> findAllSession(int page) { return sessionRepository.findAll(PageRequest.of(page, 2)); }

@@ -20,7 +20,6 @@
             </ul>
         </div>
 
-        <div class = "container col-md-6 marge">
             <div class="panel panel-primary">
                 <div class="panel-heading">Cinéma</div>
 
@@ -48,6 +47,12 @@
                             <td>
                                 <a class="btn btn-secondary" th:href="@{ /movie (idMovieTheater=${m.id}) }">Films <i class="fas fa-video"></i> </a>
                             </td>
+                            <td>
+                                <a class="btn btn-info" th:href="@{ /editMovieTheater (idMovieTheater=${m.id}) }" >Edit <i class="fas fa-pen"></i></a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" onclick="return confirm('Are you sure ?')" >Delete <i class="fas fa-trash-alt"></i></a>
+                            </td>
                         </tr>
                     </table>
 
@@ -58,7 +63,6 @@
                     </ul>
                 </div>
             </div>
-        </div>
     </div>
 </body>
 

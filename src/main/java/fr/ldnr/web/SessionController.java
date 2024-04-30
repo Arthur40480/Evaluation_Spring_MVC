@@ -2,6 +2,7 @@ package fr.ldnr.web;
 
 import fr.ldnr.business.IBusinessImpl;
 import fr.ldnr.entities.Movie;
+import fr.ldnr.entities.MovieTheater;
 import fr.ldnr.entities.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.sql.SQLOutput;
 import java.util.Date;
 import java.util.Optional;
 
@@ -39,8 +41,8 @@ public class SessionController {
         Page<Session> sessionList = null;
 
         if (idMovie != 0) {
-            Optional<Movie> optionalMovie = iBusinessImpl.findMovieById(idMovie);
-            if (!optionalMovie.isPresent()) {
+            Movie optionalMovie = iBusinessImpl.findMovieById(idMovie);
+            if (optionalMovie == null) {
                 model.addAttribute("error", "ID MOVIE INVALID");
             } else {
                 sessionList = iBusinessImpl.findSessionByMovie(idMovie, page);
@@ -74,15 +76,37 @@ public class SessionController {
         return "sessionForm";
     }
 
+    @GetMapping("/editSession")
+    public String edit(Long idSession, Model model) {
+        Session session;
+        try {
+            session = iBusinessImpl.findSessionById(idSession);
+            model.addAttribute("movieList", iBusinessImpl.findAllMovie());
+            model.addAttribute("session", session);
+            model.addAttribute("idSession", idSession);
+        }
+        catch (Exception e) {
+            model.addAttribute("error",e.getMessage());
+            logger.error("[SESSION CONTROLLER : EDIT] : {} " , e.getMessage());
+        }
+        return "sessionForm";
+    }
+
     @PostMapping("/saveSession")
-    public String save(@Valid Session session, BindingResult bindingResult, Model model, RedirectAttributes redirectAttrs) {
+    public String save(@Valid Session session, BindingResult bindingResult,
+                       @RequestParam(name = "idSession", defaultValue = "0") Long idSession,
+                       Model model, RedirectAttributes redirectAttrs) {
         try {
             if(bindingResult.hasErrors()) {
                 model.addAttribute("movieList", iBusinessImpl.findAllMovie());
                 return "sessionForm";
             }
-            System.out.println(session);
-            iBusinessImpl.createSession(session);
+            if(idSession != 0) {
+                session.setId(idSession);
+                iBusinessImpl.createSession(session);
+            } else {
+                iBusinessImpl.createSession(session);
+            }
         }
         catch(Exception e) {
             redirectAttrs.addAttribute("error",e.getMessage());

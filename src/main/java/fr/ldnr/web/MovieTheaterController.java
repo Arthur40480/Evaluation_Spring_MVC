@@ -69,14 +69,35 @@ public class MovieTheaterController {
         return "movieTheatersForm";
     }
 
+    @GetMapping("/editMovieTheater")
+    public String edit(Long idMovieTheater, Model model) {
+        MovieTheater movieTheater;
+        try {
+            movieTheater = iBusinessImpl.findMovieTheaterById(idMovieTheater);
+            model.addAttribute("cityList", iBusinessImpl.findAllCity());
+            model.addAttribute("movieTheater", movieTheater);
+        } catch (Exception e) {
+            model.addAttribute("error",e.getMessage());
+            logger.error("[MOVIE_THEATER CONTROLLER : EDIT] : {} " , e.getMessage());
+        }
+        return "movieTheatersForm";
+    }
+
     @PostMapping("/saveMovieTheater")
-    public String save(@Valid MovieTheater movieTheater, BindingResult bindingResult, Model model, RedirectAttributes redirectAttrs) {
+    public String save(@Valid MovieTheater movieTheater, BindingResult bindingResult,
+                       @RequestParam(name = "idMovieTheater", defaultValue = "0") Long idMovieTheater,
+                       Model model, RedirectAttributes redirectAttrs) {
         try {
             if(bindingResult.hasErrors()) {
                 model.addAttribute("cityList", iBusinessImpl.findAllCity());
                 return "movieTheatersForm";
             }
-            iBusinessImpl.createMovieTheater(movieTheater);
+            if (idMovieTheater != 0) {
+                movieTheater.setId(idMovieTheater);
+                iBusinessImpl.createMovieTheater(movieTheater);
+            }else {
+                iBusinessImpl.createMovieTheater(movieTheater);
+            }
         }
         catch(Exception e) {
             redirectAttrs.addAttribute("error",e.getMessage());

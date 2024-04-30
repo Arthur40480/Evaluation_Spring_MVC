@@ -21,7 +21,7 @@ public interface IBusiness {
 
     //MOVIE_THEATER
     public void createMovieTheater(MovieTheater movieTheater);
-    public Optional<MovieTheater>  findMovieTheaterById(Long idMovieTheater);
+    public MovieTheater findMovieTheaterById(Long idMovieTheater);
     public List<MovieTheater> findAllMovieTheater();
     public Page<MovieTheater> findMovieTheaterByCity(Long idCity, int page);
     public Page<MovieTheater> findMovieTheaterByKeyword(String kw, int page);
@@ -29,12 +29,13 @@ public interface IBusiness {
     //MOVIE
     public void createMovie(Movie movie);
     public List<Movie> findAllMovie();
-    public Optional<Movie> findMovieById(Long idMovie);
+    public Movie findMovieById(Long idMovie);
     public Page<Movie> findMovieByKeyword(String kw, int page);
     public Page<Movie> findMovieByMovieTheater(Long idMovieTheater, int page);
 
     //SESSION
     public void createSession(Session session);
+    public Session findSessionById(Long idSession);
     public Page<Session> findAllSession(int page);
     public Page<Session> findSessionByMovie(Long idMovie, int page);
     public Page<Session> findSessionByDate(Date date, int page);

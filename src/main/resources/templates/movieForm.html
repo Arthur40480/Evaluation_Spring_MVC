@@ -14,7 +14,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading">Saisir un nouveau film</div>
             <div class="panel-body">
-                <form th:action="@{/saveMovie}" method="post" th:object="${movie}">
+                <form th:action="@{/saveMovie (idMovie=${movie.id})}" method="post" th:object="${movie}">
 
                     <div class="form-group">
                         <label class="control-label"> Nom : </label>

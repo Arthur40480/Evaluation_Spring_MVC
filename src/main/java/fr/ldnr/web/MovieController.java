@@ -35,8 +35,8 @@ public class MovieController {
         Page<Movie> movieList = null;
 
         if(idMovieTheater != 0) {
-            Optional<MovieTheater> optionalMovieTheater = iBusinessImpl.findMovieTheaterById(idMovieTheater);
-            if(!optionalMovieTheater.isPresent()) {
+            MovieTheater optionalMovieTheater = iBusinessImpl.findMovieTheaterById(idMovieTheater);
+            if(optionalMovieTheater == null) {
                 model.addAttribute("error", "ID MOVIE THEATER INVALID");
                 movieList = iBusinessImpl.findMovieByKeyword(kw, page);
             }else {
@@ -66,14 +66,35 @@ public class MovieController {
         return "movieForm";
     }
 
+    @GetMapping("/editMovie")
+    public String edit(Long idMovie, Model model) {
+        Movie movie;
+        try {
+            movie = iBusinessImpl.findMovieById(idMovie);
+            model.addAttribute("movieTheaterList", iBusinessImpl.findAllMovieTheater());
+            model.addAttribute("movie", movie);
+        } catch (Exception e) {
+            model.addAttribute("error",e.getMessage());
+            logger.error("[MOVIE CONTROLLER : EDIT] : {} " , e.getMessage());
+        }
+        return "movieForm";
+    }
+
     @PostMapping("/saveMovie")
-    public String save(@Valid Movie movie, BindingResult bindingResult, Model model, RedirectAttributes redirectAttrs) {
+    public String save(@Valid Movie movie, BindingResult bindingResult,
+                       @RequestParam(name = "idMovie", defaultValue = "0") Long idMovie,
+                       Model model, RedirectAttributes redirectAttrs) {
         try {
             if(bindingResult.hasErrors()) {
                 model.addAttribute("movieTheaterList", iBusinessImpl.findAllMovieTheater());
                 return "movieForm";
             }
-            iBusinessImpl.createMovie(movie);
+            if (idMovie != null) {
+                movie.setId(idMovie);
+                iBusinessImpl.createMovie(movie);
+            }else {
+                iBusinessImpl.createMovie(movie);
+            }
         }
         catch(Exception e) {
             redirectAttrs.addAttribute("error",e.getMessage());
