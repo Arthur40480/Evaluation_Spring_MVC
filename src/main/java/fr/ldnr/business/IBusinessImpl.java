@@ -14,11 +14,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class IBusinessImpl implements IBusiness {
+
+    public HashMap<Long, Session> cart;
 
     @Autowired
     CityRepository cityRepository;

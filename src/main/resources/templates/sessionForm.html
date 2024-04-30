@@ -30,6 +30,11 @@
                             <span th:errors="${session.time}" class="text-danger"></span>
                         </div>
                         <div class="form-group">
+                            <label class="control-label"> Prix(€) :</label>
+                            <input class="form-control" type="number" name="price" th:value="${session.price}">
+                            <span th:errors="${session.price}" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
                             <select name="movie">
                                 <option th:each="movie : ${movieList}" th:value="${movie.id}" th:text="${movie.name}"></option>
                             </select>

@@ -37,6 +37,9 @@ public class SpringMvcApplication implements CommandLineRunner {
 	}
 
 	private void generateDatas() {
+		double normalPrice = 7.9;
+		double extraPrice = 12.9;
+
 		List<MovieTheater> movieTheaterList = null;
 		List<Movie> movieList = null;
 		List<Session> sessionList = null;
@@ -93,15 +96,15 @@ public class SpringMvcApplication implements CommandLineRunner {
 		movieRepository.save(titanic);
 		movieRepository.save(lesEvades);
 
-		Session mondaySession1 = new Session(new Date(124, 5, 21), "11:00", lor);
-		Session mondaySession2 = new Session(new Date(124, 5, 21), "17:00", interstellar);
-		Session mondaySession3 = new Session(new Date(124, 5, 21), "20:30", inception);
-		Session tuesdaySession1 = new Session(new Date(124, 5, 22), "22:15", lesEvades);
-		Session tuesdaySession2 = new Session(new Date(124, 5, 22), "00:00", laLaLand);
-		Session tuesdaySession3 = new Session(new Date(124, 5, 22), "09:45", leParrain);
-		Session wednesdaySession1 = new Session(new Date(124, 5, 23), "11:35", forestGump);
-		Session wednesdaySession2 = new Session(new Date(124, 5, 23), "18:25", pulpFiction);
-		Session wednesdaySession3 = new Session(new Date(124, 5, 23), "19:00", titanic);
+		Session mondaySession1 = new Session(new Date(124, 5, 21), "11:00", normalPrice, lor);
+		Session mondaySession2 = new Session(new Date(124, 5, 21), "17:00", normalPrice, interstellar);
+		Session mondaySession3 = new Session(new Date(124, 5, 21), "20:30", normalPrice, inception);
+		Session tuesdaySession1 = new Session(new Date(124, 5, 22), "22:15", normalPrice,lesEvades);
+		Session tuesdaySession2 = new Session(new Date(124, 5, 22), "00:00", normalPrice, laLaLand);
+		Session tuesdaySession3 = new Session(new Date(124, 5, 22), "09:45", extraPrice, leParrain);
+		Session wednesdaySession1 = new Session(new Date(124, 5, 23), "11:35", extraPrice, forestGump);
+		Session wednesdaySession2 = new Session(new Date(124, 5, 23), "18:25", extraPrice, pulpFiction);
+		Session wednesdaySession3 = new Session(new Date(124, 5, 23), "19:00", extraPrice, titanic);
 		sessionRepository.save(mondaySession1);
 		sessionRepository.save(mondaySession2);
 		sessionRepository.save(mondaySession3);

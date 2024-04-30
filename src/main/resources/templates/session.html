@@ -30,13 +30,17 @@
                 <div class="panel-body">
                     <table class = "table">
                         <tr>
-                            <th>Date</th> <th>Heure</th> <th>Film</th> <th>Cinéma</th>
+                            <th>Date</th> <th>Heure</th> <th>Film</th> <th>Cinéma</th> <th>Prix (€)</th>
                         </tr>
                         <tr th:each="s:${sessionList}">
                             <td th:text="${#dates.format(s.date, 'dd/MM')}"> </td>
                             <td th:text="${s.time}"></td>
                             <td th:text="${s.movie.name}"> </td>
                             <td th:text="${s.movie.movieTheater.name}"> </td>
+                            <td th:text="${s.price}"> </td>
+                            <td>
+                                <a class="btn btn-success">Réserver  <i class="fas fa-ticket-alt"></i></a>
+                            </td>
                             <td>
                                 <a class="btn btn-info" th:href="@{ /editSession (idSession=${s.id}) }" >Edit <i class="fas fa-pen"></i></a>
                             </td>

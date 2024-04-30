@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://thymeLeaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate = "layout" lang="fr">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Panier</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="container">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Panier</div>
+                <div class="panel-body">
+                    <table class="table">
+                        <tr>
+                            <th>Date</th> <th>Horaire</th> <th>Prix</th> <th>Quantité</th> <th>Film</th> <th>Cinéma</th>
+                        </tr>
+                        <tr th:each="a:${listCart.entrySet()}">
+                            <td th:text="${a.value.date}"></td>
+                            <td th:text="${a.value.time}"></td>
+                            <td th:text="${a.value.price}"></td>
+                            <td th:text="${a.value.quantity}"></td>
+                            <td th:text="${a.value.movie.name}"></td>
+                            <td th:text="${a.value.movie.movieTheater.name}"></td>
+                            <td>
+                                <a class="btn btn-danger" >Supprimer du panier <i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    </table>
+                    <div>
+                        Total: ?
+                    </div>
+                    <br>
+                    <a class="btn btn-primary">Valider la commande</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
