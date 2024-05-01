@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec	="http://www.thymeleaf.org/extras/spring-security5"
       lang="fr">
 
 <head>
@@ -29,11 +30,16 @@
                 <li>
                     <a th:href="@{/session}">Séance</a>
                 </li>
-                <li>
-                    <a th:href="@{/city}"><strong>[Gestion des villes <i class="fas fa-city"></i>]</strong></a>
+                <li sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a th:href="@{/city}"><strong>[ Gestion des villes <i class="fas fa-city"></i> ]</strong></a>
                 </li>
                 <li>
                     <a th:href="@{/cart}" class="fa fa-shopping-cart" th:text="${nbcart}"></a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <a th:href="@{/logout}" class="fas fa-sign-in-alt" th:text="${username}"></a>
                 </li>
             </ul>
         </div>

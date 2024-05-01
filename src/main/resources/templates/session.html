@@ -2,6 +2,7 @@
 <html xmlns:th        = "http://thymeleaf.org"
       xmlns:layout    = "http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate = "layout"
+      xmlns:sec	      = "http://www.thymeleaf.org/extras/spring-security5"
       lang="fr">
 <head>
     <meta charset="utf-8">
@@ -24,7 +25,7 @@
                     </form>
                 </div>
 
-                <div class="col-md-6" style="margin-bottom: 10px;">
+                <div class="col-md-6" style="margin-bottom: 10px;" sec:authorize="hasRole('ROLE_ADMIN')">
                     <a class="btn btn-success" th:href="@{/sessionForm}">Ajouter une séance <i class="fas fa-clock"></i></a>
                 </div>
 
@@ -42,10 +43,10 @@
                             <td>
                                 <a class="btn btn-success" th:href="@{ /addToCart (idSession=${s.id}, page=${currentPage}) }">Réserver  <i class="fas fa-ticket-alt"></i></a>
                             </td>
-                            <td>
+                            <td sec:authorize="hasRole('ROLE_ADMIN')">
                                 <a class="btn btn-info" th:href="@{ /editSession (idSession=${s.id}) }" >Edit <i class="fas fa-pen"></i></a>
                             </td>
-                            <td>
+                            <td sec:authorize="hasRole('ROLE_ADMIN')">
                                 <a class="btn btn-danger" onclick="return confirm('Voulez vous confirmer la suppression ?')" th:href="@{ /deleteSession (idSession=${s.id})}" >Delete <i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>

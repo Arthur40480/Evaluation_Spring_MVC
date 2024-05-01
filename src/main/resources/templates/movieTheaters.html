@@ -2,6 +2,7 @@
 <html xmlns:th        = "http://thymeleaf.org"
       xmlns:layout    = "http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate = "layout"
+      xmlns:sec	      = "http://www.thymeleaf.org/extras/spring-security5"
       lang="fr">
 <head>
     <meta charset="utf-8">
@@ -32,7 +33,7 @@
                     </form>
                 </div>
 
-                <div class="col-md-6" style="margin-bottom: 10px;">
+                <div class="col-md-6" style="margin-bottom: 10px;" sec:authorize="hasRole('ROLE_ADMIN')">
                     <a class="btn btn-success" th:href="@{/movieTheater}">Ajouter un cinéma <i class="fas fa-home"></i></a>
                 </div>
 
@@ -48,10 +49,10 @@
                             <td>
                                 <a class="btn btn-secondary" th:href="@{ /movie (idMovieTheater=${m.id}) }">Films <i class="fas fa-video"></i> </a>
                             </td>
-                            <td>
-                                <a class="btn btn-info" th:href="@{ /editMovieTheater (idMovieTheater=${m.id}) }" >Edit <i class="fas fa-pen"></i></a>
+                            <td sec:authorize="hasRole('ROLE_ADMIN')">
+                                <a class="btn btn-info" th:href="@{ /editMovieTheater (idMovieTheater=${m.id}) }">Edit <i class="fas fa-pen"></i></a>
                             </td>
-                            <td>
+                            <td sec:authorize="hasRole('ROLE_ADMIN')">
                                 <a class="btn btn-danger" onclick="return confirm('Voulez vous confirmer la suppression ?')" th:href="@{deleteMovieTheater (idMovieTheater=${m.id})}" >Delete <i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
