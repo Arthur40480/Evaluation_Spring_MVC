@@ -53,6 +53,7 @@
             <li sec:authorize="isAuthenticated()">
                 <span>Bonjour </span>
                 <span th:text="${#authentication.name}" style="font-weight: bold;"></span>
+                <span><i class="fas fa-user-tie"></i></span>
                 <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" style="color: red; font-weight: bold;">[ ADMIN ]</span>
                 <span th:if="${not #authorization.expression('hasRole(''ROLE_ADMIN'')')}" style="color: green; font-weight: bold;">[ USER ]</span>
             </li>
