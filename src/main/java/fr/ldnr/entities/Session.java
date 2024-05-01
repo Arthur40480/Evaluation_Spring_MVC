@@ -48,4 +48,13 @@ public class Session implements Serializable {
         this.price = price;
         this.movie = movie;
     }
+
+    public Session(Long id, Date date, String time, double price, Movie movie) {
+        this.id = id;
+        this.date = date;
+        this.time = time;
+        this.price = price;
+        this.movie = movie;
+    }
+
 }
