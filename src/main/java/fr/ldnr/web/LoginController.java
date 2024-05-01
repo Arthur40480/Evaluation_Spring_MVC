@@ -31,4 +31,14 @@ public class LoginController {
         }
         return "redirect:/login";
     }
+
+    @GetMapping("/403")
+    public String accessDenied() {
+        return "error/403";
+    }
+
+    @GetMapping("/error")
+    public String error() {
+        return "error/404";
+    }
 }

@@ -53,7 +53,7 @@
 
                     <ul class = "nav nav-pills">
                         <li th:class="${currentPage==status.index}?'active':''"  th:each="page,status:${pages}">
-                            <a th:href="@{/movie(page=${status.index}, idCity=${idMovieTheater}, keyword=${keyword} ) }" th:text="${status.index}"></a>
+                            <a th:href="@{/movie(page=${status.index}, idMovieTheater=${idMovieTheater}, keyword=${keyword} ) }" th:text="${status.index}"></a>
                         </li>
                     </ul>
                 </div>
