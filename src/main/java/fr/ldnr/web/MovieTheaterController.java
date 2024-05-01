@@ -114,6 +114,7 @@ public class MovieTheaterController {
             Page<Movie> movieList= iBusinessImpl.findMovieByMovieTheater(idMovieTheater, 0);
             if (movieList.isEmpty()) {
                 iBusinessImpl.deleteMovieTheater(movieTheaterToDelete);
+                model.addAttribute("success", "SUPPRESSION REUSSIE ");
             }else {
                 model.addAttribute("error", "SUPPRESSION IMPOSSIBLE : Des films sont associés à ce cinéma. Veuillez d'abord supprimer les films affiliés avant de supprimer le cinéma.");
             }

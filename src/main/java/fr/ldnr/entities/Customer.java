@@ -6,8 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Collection;
 
 @Entity
@@ -16,6 +15,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @ToString
 public class Customer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,7 +29,8 @@ public class Customer {
     private String sname;
 
     @NotNull
-    @Size(min=5,max=30)
+    @NotEmpty
+    @Email
     private String email;
 
     @NotNull
@@ -37,7 +38,7 @@ public class Customer {
     private String address;
 
     @NotNull
-    @Size(min=10,max=20)
+    @Pattern(regexp="\\d{10}", message="Numéro de téléphone incorrect")
     private String phone;
 
     @OneToMany(mappedBy = "customer")

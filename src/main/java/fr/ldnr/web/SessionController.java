@@ -121,6 +121,7 @@ public class SessionController {
             Session sessionToDelete = iBusinessImpl.findSessionById(idSession);
             if (sessionToDelete != null) {
                 iBusinessImpl.deleteSession(sessionToDelete);
+                model.addAttribute("success", "SUPPRESSION REUSSIE ");
             }else {
                 model.addAttribute("error", "SUPPRESSION IMPOSSIBLE : La séance n'éxiste pas");
             }

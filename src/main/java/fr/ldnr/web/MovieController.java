@@ -111,6 +111,7 @@ public class MovieController {
             Page<Session> sessionList= iBusinessImpl.findSessionByMovie(idMovie, 0);
             if (sessionList.isEmpty()) {
                 iBusinessImpl.deleteMovie(movieToDelete);
+                model.addAttribute("success", "SUPPRESSION REUSSIE ");
             }else {
                 model.addAttribute("error", "SUPPRESSION IMPOSSIBLE : Des séances sont associées à ce film. Veuillez d'abord supprimer les séances affiliées avant de supprimer le film.");
             }

@@ -114,6 +114,7 @@ public class CityController {
             Page<MovieTheater> movieTheaterList= iBusinessImpl.findMovieTheaterByCity(cityToDelete.getId(), 0);
             if (movieTheaterList.isEmpty()) {
                 iBusinessImpl.deleteCity(cityToDelete);
+                model.addAttribute("success", "SUPPRESSION REUSSIE ");
             }else {
                 model.addAttribute("error", "SUPPRESSION IMPOSSIBLE : Des cinémas sont associés à cette ville. Veuillez d'abord supprimer les cinémas affiliés avant de supprimer la ville.");
             }
