@@ -135,6 +135,6 @@ public class SessionController {
             redirectAttributes.addAttribute("error",e.getMessage());
             logger.error("[SESSION CONTROLLER : DELETE] : {} " , e.getMessage());
         }
-        return "session";
+        return "redirect:/session";
     }
 }

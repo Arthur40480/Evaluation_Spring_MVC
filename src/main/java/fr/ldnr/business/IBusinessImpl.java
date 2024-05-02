@@ -16,7 +16,7 @@ import java.util.Optional;
 public class IBusinessImpl implements IBusiness {
 
     /** Panier contenant les séances */
-    private HashMap<Long, Session> cart;
+    private final HashMap<Long, Session> cart;
 
     /** Client */
     private Customer customer;
@@ -62,7 +62,7 @@ public class IBusinessImpl implements IBusiness {
     @Override
     public City findCityById(Long idCity) {
         Optional<City> optional = cityRepository.findById(idCity);
-        return optional.isPresent()? optional.get() : null;
+        return optional.orElse(null);
     }
 
     /**
@@ -104,7 +104,7 @@ public class IBusinessImpl implements IBusiness {
     @Override
     public MovieTheater findMovieTheaterById(Long idMovieTheater) {
         Optional<MovieTheater> optional = movieTheaterRepository.findById(idMovieTheater);
-        return optional.isPresent()? optional.get() : null;
+        return optional.orElse(null);
     }
 
     /**
@@ -155,7 +155,7 @@ public class IBusinessImpl implements IBusiness {
     @Override
     public Movie findMovieById(Long idMovie) {
         Optional<Movie> optional = movieRepository.findById(idMovie);
-        return optional.isPresent()? optional.get() : null;
+        return optional.orElse(null);
     }
 
     /**
@@ -206,7 +206,7 @@ public class IBusinessImpl implements IBusiness {
     @Override
     public Session findSessionById(Long idSession) {
         Optional<Session> optional = sessionRepository.findById(idSession);
-        return optional.isPresent()? optional.get() : null;
+        return optional.orElse(null);
     }
 
     /**

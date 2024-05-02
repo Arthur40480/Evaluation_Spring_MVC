@@ -5,8 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public interface IBusiness {
@@ -43,7 +43,7 @@ public interface IBusiness {
     public void deleteSession(Session session);
 
     //CART
-    public HashMap<Long, Session> getCart();
+    public Map<Long, Session> getCart();
     public void addToCart(Session session);
     public void removeToCart(Long idSession);
     public void clearCart();
