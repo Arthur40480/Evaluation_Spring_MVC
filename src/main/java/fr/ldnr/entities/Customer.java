@@ -43,4 +43,5 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer")
     Collection<Order> orders;
+
 }
