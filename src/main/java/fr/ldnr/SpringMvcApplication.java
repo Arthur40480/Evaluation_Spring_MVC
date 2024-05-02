@@ -104,6 +104,24 @@ public class SpringMvcApplication implements CommandLineRunner {
 		Session wednesdaySession1 = new Session(new Date(124, 5, 23), "11:35", extraPrice, forestGump);
 		Session wednesdaySession2 = new Session(new Date(124, 5, 23), "18:25", extraPrice, pulpFiction);
 		Session wednesdaySession3 = new Session(new Date(124, 5, 23), "19:00", extraPrice, titanic);
+		Session mondaySession4 = new Session(new Date(124, 5, 21), "14:00", normalPrice, lor);
+		Session mondaySession5 = new Session(new Date(124, 5, 21), "19:00", normalPrice, interstellar);
+		Session mondaySession6 = new Session(new Date(124, 5, 21), "21:30", normalPrice, inception);
+		Session tuesdaySession4 = new Session(new Date(124, 5, 22), "23:15", normalPrice,lesEvades);
+		Session tuesdaySession5 = new Session(new Date(124, 5, 22), "09:00", normalPrice, laLaLand);
+		Session tuesdaySession6 = new Session(new Date(124, 5, 22), "11:45", extraPrice, leParrain);
+		Session wednesdaySession4 = new Session(new Date(124, 5, 23), "13:35", extraPrice, forestGump);
+		Session wednesdaySession5 = new Session(new Date(124, 5, 23), "14:25", extraPrice, pulpFiction);
+		Session wednesdaySession6 = new Session(new Date(124, 5, 23), "20:00", extraPrice, titanic);
+		Session mondaySession7 = new Session(new Date(124, 5, 21), "13:30", normalPrice, lor);
+		Session mondaySession8 = new Session(new Date(124, 5, 21), "17:45", normalPrice, interstellar);
+		Session mondaySession9 = new Session(new Date(124, 5, 21), "20:55", normalPrice, inception);
+		Session tuesdaySession7 = new Session(new Date(124, 5, 22), "00:15", normalPrice,lesEvades);
+		Session tuesdaySession8 = new Session(new Date(124, 5, 22), "14:35", normalPrice, laLaLand);
+		Session tuesdaySession9 = new Session(new Date(124, 5, 22), "12:10", extraPrice, leParrain);
+		Session wednesdaySession7 = new Session(new Date(124, 5, 23), "18:50", extraPrice, forestGump);
+		Session wednesdaySession8 = new Session(new Date(124, 5, 23), "11:48", extraPrice, pulpFiction);
+		Session wednesdaySession9 = new Session(new Date(124, 5, 23), "23:33", extraPrice, titanic);
 		sessionRepository.save(mondaySession1);
 		sessionRepository.save(mondaySession2);
 		sessionRepository.save(mondaySession3);
@@ -113,5 +131,23 @@ public class SpringMvcApplication implements CommandLineRunner {
 		sessionRepository.save(wednesdaySession1);
 		sessionRepository.save(wednesdaySession2);
 		sessionRepository.save(wednesdaySession3);
+		sessionRepository.save(mondaySession4);
+		sessionRepository.save(mondaySession5);
+		sessionRepository.save(mondaySession6);
+		sessionRepository.save(tuesdaySession4);
+		sessionRepository.save(tuesdaySession5);
+		sessionRepository.save(tuesdaySession6);
+		sessionRepository.save(wednesdaySession4);
+		sessionRepository.save(wednesdaySession5);
+		sessionRepository.save(wednesdaySession6);
+		sessionRepository.save(mondaySession7);
+		sessionRepository.save(mondaySession8);
+		sessionRepository.save(mondaySession9);
+		sessionRepository.save(tuesdaySession7);
+		sessionRepository.save(tuesdaySession8);
+		sessionRepository.save(tuesdaySession9);
+		sessionRepository.save(wednesdaySession7);
+		sessionRepository.save(wednesdaySession8);
+		sessionRepository.save(wednesdaySession9);
 	}
 }
